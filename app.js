@@ -7,7 +7,7 @@ const subModules = document.getElementById("subModules");
 let currentIndex = 0;
 let carouselInterval;
 
-if (window.Telegram.WebApp) {
+if (window.Telegram && window.Telegram.WebApp) {
   Telegram.WebApp.ready();
 }
 
