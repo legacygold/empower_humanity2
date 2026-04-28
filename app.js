@@ -25,6 +25,9 @@ enterBtn.onclick = () => {
   startCarousel();
 };
 
+// LOG JS LOAD
+console.log("JS LOADED");
+
 // LOG BUTTON CLICK
 enterBtn.addEventListener("click", () => {
   console.log("Enter clicked");
