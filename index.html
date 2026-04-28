@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Empower Humanity 2.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <img src="assets/logo.jpg" alt="EH2 Logo" class="logo">
+  
+  <div>Tier: Explorer</div>
+  <div class="right">
+    <span>PTLX: 250</span>
+    <span>Progress: 60%</span>
+    <button id="walletBtn">
+        <img src="assets/wallet-icon.png" alt="Wallet" class="wallet-icon">
+    </button>
+  </div>
+</div>
+
+<!-- WELCOME SCREEN -->
+<div id="welcome" class="card">
+  <h1>Welcome to Empower Humanity 2.0</h1>
+  <p>Let EmpowerBot be your guide</p>
+  <button id="enterBtn">Enter</button>
+</div>
+
+<!-- MODULE CAROUSEL -->
+<div id="modules" class="hidden">
+
+  <div class="module active" data-module="stellarxpay">
+    <h2>StellarXPAY</h2>
+    <p>Fast, simple sovereign payments</p>
+    <button class="moduleEnter">Enter</button>
+  </div>
+
+  <div class="module" data-module="empowerfix">
+    <h2>EmpowerFiX</h2>
+    <p>Automated asset optimization powered by PortalX</p>
+    <button class="moduleEnter">Enter</button>
+  </div>
+
+  <div class="module" data-module="stellarverse">
+    <h2>StellarVerse</h2>
+    <p>Creative sovereign economy</p>
+    <button class="moduleEnter">Enter</button>
+  </div>
+
+</div>
+
+<!-- SUB MODULE ORBS -->
+<div id="subModules" class="hidden"></div>
+
+<script src="src/wallet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
