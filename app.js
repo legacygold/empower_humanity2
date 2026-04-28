@@ -25,6 +25,11 @@ enterBtn.onclick = () => {
   startCarousel();
 };
 
+// LOG BUTTON CLICK
+enterBtn.addEventListener("click", () => {
+  console.log("Enter clicked");
+});
+
 // ROTATING MODULES
 function startCarousel() {
   carouselInterval = setInterval(() => {
