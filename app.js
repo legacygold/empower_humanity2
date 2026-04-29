@@ -44,12 +44,13 @@ function startCarousel() {
 // MODULE CLICK
 document.querySelectorAll(".moduleEnter").forEach(btn => {
   btn.onclick = (e) => {
-    clearInterval(carouselInterval);
+    const button = e.currentTarget;
 
-    const module = e.target.closest(".module").dataset.module;
-    currentModule = module;
+    button.classList.add("glow-click");
 
-    showSubModules(module);
+    setTimeout(() => {
+      button.classList.remove("glow-click");
+    }, 200);
   };
 });
 
@@ -75,6 +76,12 @@ function showSubModules(module) {
     orb.innerText = name;
 
     orb.onclick = () => {
+      orb.classList.add("glow-click");
+
+      setTimeout(() => {
+        orb.classList.remove("glow-click");
+      }, 200);
+
       alert(`${name} coming soon!`);
     };
 
@@ -83,8 +90,15 @@ function showSubModules(module) {
 
   // BACK BUTTON LOGIC
   document.getElementById("backBtn").onclick = () => {
+    subModules.innerHTML = "";
     subModules.classList.add("hidden");
+
     modules.classList.remove("hidden");
+
+    // Reset carousel state cleanly
+    currentIndex = 0;
+    moduleCards.forEach(card => card.classList.remove("active"));
+
     startCarousel();
   };
 }
@@ -95,4 +109,13 @@ function formatTitle(key) {
   if (key === "empowerfix") return "EmpowerFiX";
   if (key === "stellarverse") return "StellarVerse";
   return key;
+}
+
+// GO HOME
+function goHome() {
+  subModules.classList.add("hidden");
+  modules.classList.add("hidden");
+  welcome.classList.remove("hidden");
+
+  clearInterval(carouselInterval);
 }
