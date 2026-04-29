@@ -22,18 +22,18 @@ body {
 }
 
 button {
-  background: purple;
+  background: #531A91;
   color: white;
   border: none;
   padding: 10px 20px;
   margin-top: 20px;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 0 10px purple;
+  box-shadow: 0 0 10px #531A91;
 }
 
 button:hover {
-  box-shadow: 0 0 20px gold;
+  box-shadow: 0 0 20px #857535;
 }
 
 .hidden {
@@ -64,19 +64,19 @@ button:hover {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: radial-gradient(circle, purple, black);
+  background: radial-gradient(circle, #531A91, black);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 10px;
   cursor: pointer;
-  box-shadow: 0 0 15px purple;
+  box-shadow: 0 0 15px #531A91;
   transition: transform 0.3s;
 }
 
 .orb:hover {
   transform: scale(1.2);
-  box-shadow: 0 0 25px gold;
+  box-shadow: 0 0 25px #857535;
 }
 
 .wallet-icon {
