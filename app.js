@@ -27,7 +27,7 @@ enterBtn.onclick = () => {
 
   setTimeout(() => {
     enterBtn.classList.remove("glow-click");
-  }, 200);
+  }, 400);
 
   welcome.classList.add("hidden");
   modules.classList.remove("hidden");
@@ -51,17 +51,17 @@ function startCarousel() {
 // MODULE CLICK
 document.querySelectorAll(".moduleEnter").forEach(btn => {
   btn.onclick = (e) => {
-    console.log("MODULE CLICKED:", module);
-    
     const button = e.currentTarget;
+
+    const module = button.closest(".module").dataset.module;
+
+    console.log("MODULE CLICKED:", module);
 
     // Glow effect
     button.classList.add("glow-click");
     setTimeout(() => {
       button.classList.remove("glow-click");
-    }, 200);
-
-    const module = button.closest(".module").dataset.module;
+    }, 400);
 
     clearInterval(carouselInterval);
 
