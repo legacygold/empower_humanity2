@@ -134,3 +134,67 @@ function goHome() {
 
   clearInterval(carouselInterval);
 }
+
+// FOOTER MENU CLICK
+document.querySelectorAll(".footer-item").forEach(item => {
+  item.onclick = () => {
+    const type = item.dataset.menu;
+
+    openFooterContainer(type);
+  };
+});
+
+// OPEN FOOTER CONTAINER
+function openFooterContainer(type) {
+  // hide other screens
+  welcome.classList.add("hidden");
+  modules.classList.add("hidden");
+  subModules.classList.remove("hidden");
+
+  let title = "";
+  let content = [];
+
+  if (type === "ptlx") {
+    title = "PTLX Rewards";
+    content = ["View Balance", "Session Rewards", "Redeem (Coming Soon)"];
+  }
+
+  if (type === "portalx") {
+    title = "PortalX";
+    content = ["Store Memory", "View Experiences", "Create PortalXperience"];
+  }
+
+  if (type === "vault") {
+    title = "PortalX Vault";
+    content = ["View Files", "Upload Memory", "Search Vault"];
+  }
+
+  subModules.innerHTML = `
+    <div class="sub-header">
+      <button id="backBtn">← Back</button>
+      <h2>${title}</h2>
+    </div>
+    <div class="orb-container"></div>
+  `;
+
+  const orbContainer = subModules.querySelector(".orb-container");
+
+  content.forEach(name => {
+    const orb = document.createElement("div");
+    orb.className = "orb";
+    orb.innerText = name;
+
+    orb.onclick = () => {
+      alert(`${name} coming soon!`);
+    };
+
+    orbContainer.appendChild(orb);
+  });
+
+  // BACK BUTTON
+  document.getElementById("backBtn").onclick = () => {
+    subModules.classList.add("hidden");
+    modules.classList.remove("hidden");
+    startCarousel();
+  };
+}
