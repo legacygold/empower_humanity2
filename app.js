@@ -23,8 +23,15 @@ const moduleData = {
 
 // ENTER → start app
 enterBtn.onclick = () => {
+  enterBtn.classList.add("glow-click");
+
+  setTimeout(() => {
+    enterBtn.classList.remove("glow-click");
+  }, 200);
+
   welcome.classList.add("hidden");
   modules.classList.remove("hidden");
+
   startCarousel();
 };
 
@@ -44,13 +51,21 @@ function startCarousel() {
 // MODULE CLICK
 document.querySelectorAll(".moduleEnter").forEach(btn => {
   btn.onclick = (e) => {
+    console.log("MODULE CLICKED:", module);
+    
     const button = e.currentTarget;
 
+    // Glow effect
     button.classList.add("glow-click");
-
     setTimeout(() => {
       button.classList.remove("glow-click");
     }, 200);
+
+    const module = button.closest(".module").dataset.module;
+
+    clearInterval(carouselInterval);
+
+    showSubModules(module);
   };
 });
 
