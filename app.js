@@ -80,11 +80,10 @@ function showSubModules(module) {
   // CLEAR + ADD TITLE + BACK BUTTON
   subModules.innerHTML = `
     <div class="sub-header">
-      <button id="backBtn">← Back</button>
       <h2>${formatTitle(module)}</h2>
-    </div>
-    <div class="orb-container"></div>
-  `;
+      <div class="orb-container"></div>
+      <button id="backBtn">← Back</button>
+    </div>`;
 
   const orbContainer = subModules.querySelector(".orb-container");
 

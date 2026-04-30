@@ -10,11 +10,14 @@
 
 <!-- TOP BAR -->
 <div class="top-bar">
-  
-  <div>Tier: Seeker</div>
-  <div class="right">
-    <span>PTLX: 250</span>
-    <span>Progress: 60%</span>
+  <div class="column, left">
+    <div>Tier: Seeker</div>
+    <div><br><label for="indicator">Tier Progress: 60%</label><br></div>
+    <br><progress id="indicator" max="100" value="60">60%</progress><br>
+  </div>
+  <div class="column, right">
+    <div><span>PTLX Balance: 250</span></div>
+    <button id="connectWalletBtn" alt="WalletConnect" class="button">Connect Wallet</button>
     <button id="walletBtn">
         <img src="assets/wallet-icon.png" alt="Wallet" class="wallet-icon">
     </button>
@@ -25,8 +28,9 @@
 <div id="welcome" class="card">
   <h1>Welcome to Empower Humanity 2.0</h1>
   <p>Let EmpowerBot be your guide</p>
+  <div><img src="assets/logo.jpg" alt="EH2 Logo" class="logo"></div>
   <button id="enterBtn">Enter</button>
-  <img src="assets/logo.jpg" alt="EH2 Logo" class="logo">
+  <div><button class="button" onclick="window.open('https://t.me/empower_testbot', '_blank')">EmpowerBot</button></div>
 </div>
 
 <!-- MODULE CAROUSEL -->
