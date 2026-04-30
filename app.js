@@ -5,6 +5,7 @@ const modules = document.getElementById("modules");
 const moduleCards = document.querySelectorAll(".module");
 const subModules = document.getElementById("subModules");
 
+let currentView = "welcome"; // "welcome", "modules", "footer"
 let currentIndex = 0;
 let carouselInterval;
 let currentModule = null;
@@ -23,6 +24,8 @@ const moduleData = {
 
 // ENTER → start app
 enterBtn.onclick = () => {
+  currentView = "modules";
+  
   enterBtn.classList.add("glow-click");
 
   setTimeout(() => {
@@ -146,6 +149,9 @@ document.querySelectorAll(".footer-item").forEach(item => {
 
 // OPEN FOOTER CONTAINER
 function openFooterContainer(type) {
+  currentView = "footer";
+  clearInterval(carouselInterval);
+
   // hide other screens
   welcome.classList.add("hidden");
   modules.classList.add("hidden");
@@ -194,7 +200,21 @@ function openFooterContainer(type) {
   // BACK BUTTON
   document.getElementById("backBtn").onclick = () => {
     subModules.classList.add("hidden");
-    modules.classList.remove("hidden");
-    startCarousel();
+
+    if (currentView === "modules") {
+      modules.classList.remove("hidden");
+
+      currentIndex = 0;
+      moduleCards.forEach(card => card.classList.remove("active"));
+      startCarousel();
+    }
+
+    if (currentView === "footer") {
+      // go back to modules as default home
+      modules.classList.remove("hidden");
+      currentView = "modules";
+      startCarousel();
+    }
   };
+
 }

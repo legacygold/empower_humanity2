@@ -3,6 +3,7 @@ body {
   background: #0f0f1a;
   color: white;
   text-align: center;
+  padding-bottom: 80px;
 }
 
 .logo {
@@ -97,14 +98,14 @@ button:hover {
   background: black;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
+  padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
   border-top: 1px solid #857535;
   z-index: 100;
 }
 
 .footer-item {
   color: #857535;
-  font-size: 14px;
+  font-size: 18px;
   text-align: center;
   cursor: pointer;
 }
