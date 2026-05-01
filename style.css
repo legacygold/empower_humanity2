@@ -12,18 +12,19 @@ body {
 }
 
 .top-bar {
-  position: relative;
+  position: fixed;
   width: 97%;
   display: flex;
-  margin-top: 0px;
+  margin-top: -10px;
   justify-content: space-between;
   padding: 10px;
   background: #1c1c2e;
 }
 
 .card {
-  margin-top: 50px;
+  margin-top: 0px;
   padding: 20px;
+  padding-top: 100px;
 }
 
 button {
