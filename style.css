@@ -12,7 +12,10 @@ body {
 }
 
 .top-bar {
+  position: relative;
+  width: 97%;
   display: flex;
+  margin-top: 0px;
   justify-content: space-between;
   padding: 10px;
   background: #1c1c2e;
@@ -95,7 +98,7 @@ button:hover {
 .footer {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 98%;
   background: black;
   display: flex;
   justify-content: space-around;
