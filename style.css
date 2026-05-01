@@ -66,6 +66,7 @@ button:hover {
 .module.active {
   opacity: 1;
   transform: scale(1);
+  position: relative;
   margin-top: 0px;
   padding: 20px;
   padding-top: 100px;
