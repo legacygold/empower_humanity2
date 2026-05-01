@@ -161,25 +161,25 @@ function openFooterContainer(type) {
 
   if (type === "ptlx") {
     title = "PTLX Rewards";
-    content = ["View Balance", "Session Rewards", "Redeem (Coming Soon)"];
+    content = ["Earn PTLX", "PTLX Relief Program", "Redeem PTLX"];
   }
 
   if (type === "portalx") {
     title = "PortalX";
-    content = ["Store Memory", "View Experiences", "Create PortalXperience"];
+    content = ["Create .ptlx EPNM", "Convert EPNM to PortalXperience", "Create New PortalXperience"];
   }
 
   if (type === "vault") {
     title = "PortalX Vault";
-    content = ["View Files", "Upload Memory", "Search Vault"];
+    content = ["Create .ptlx EDM", "Convert EDM to file", "Fetch EDM for Enhanced Use"];
   }
 
   subModules.innerHTML = `
-    <div class="sub-header">
-      <button id="backBtn">← Back</button>
+    <div class="sub-header" align="center">
       <h2>${title}</h2>
+      <div class="orb-container"></div>
+      <button id="closeBtn">← Close</button> 
     </div>
-    <div class="orb-container"></div>
   `;
 
   const orbContainer = subModules.querySelector(".orb-container");
@@ -196,24 +196,10 @@ function openFooterContainer(type) {
     orbContainer.appendChild(orb);
   });
 
-  // BACK BUTTON
-  document.getElementById("backBtn").onclick = () => {
+  // CLOSE BUTTON
+  document.getElementById("closeBtn").onclick = () => {
+    subModules.innerHTML = "";
     subModules.classList.add("hidden");
-
-    if (currentView === "modules") {
-      modules.classList.remove("hidden");
-
-      currentIndex = 0;
-      moduleCards.forEach(card => card.classList.remove("active"));
-      startCarousel();
-    }
-
-    if (currentView === "footer") {
-      // go back to modules as default home
-      modules.classList.remove("hidden");
-      currentView = "modules";
-      startCarousel();
-    }
+    goHome();
   };
-
 }
