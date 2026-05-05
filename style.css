@@ -69,7 +69,6 @@ button:hover {
 .module {
   opacity: 0;
   justify-content: center;
-  transform: scale(0.9);
   transition: all 0.6s ease;
   position: absolute;
   width: 100%;
@@ -81,7 +80,6 @@ button:hover {
 .module.active {
   opacity: 1;
   justify-content: center;
-  transform: scale(1);
   transition: opacity 0.4s ease, transform 0.4s ease;
   position: fixed;
   margin-top: 0px;
