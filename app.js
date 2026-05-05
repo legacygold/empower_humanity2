@@ -46,8 +46,20 @@ function startCarousel() {
 
   carouselInterval = setInterval(() => {
     moduleCards[currentIndex].classList.remove("active");
-    currentIndex = (currentIndex + 1) % moduleCards.length;
-    moduleCards[currentIndex].classList.add("active");
+    // Detect loop reset
+    if (currentIndex === moduleCards.length - 1) {
+      currentIndex = 0;
+
+      // 👇 tiny delay prevents Android zoom glitch
+      setTimeout(() => {
+        moduleCards[currentIndex].classList.add("active");
+      }, 50);
+
+    } else {
+      currentIndex++;
+      moduleCards[currentIndex].classList.add("active");
+    }
+
   }, 3000);
 }
 
