@@ -84,7 +84,7 @@ button:hover {
   opacity: 1;
   justify-content: center;
   transition: opacity 0.4s ease, transform 0.4s ease;
-  position: fixed;
+  position: relative;
   margin-top: 0px;
   padding: 0px;
   padding-top: 50px;

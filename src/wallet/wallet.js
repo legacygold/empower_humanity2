@@ -1,4 +1,4 @@
-// wallet.ts – placeholder for Stellar keypair handling
+// wallet.js – placeholder for Stellar keypair handling
 export interface Wallet {
   publicKey: string;   // Stellar address
   encryptedSecret: string; // stored encrypted locally

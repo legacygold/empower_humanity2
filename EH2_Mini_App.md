@@ -34,6 +34,19 @@ When the user opens the `Empower Humanity 2.0` Telegram mini app the user is bro
         •StellarXPAY *An on/off ramp for a sovereign economy*
         •EmpowerFiX powered by PortalX *The ultimate sovereign economy resource*
         •StellarVerse *A soveriegn creation and collaboration hub*
+3. `Footer`: Clicking each option opens *submodules* of each
+    - **PTLX Rewards**
+        •Earn PTLX
+        •PTLX Relief Program
+        •Redeem PTLX
+    - **PortalX**
+        •Create .ptlx EPNM
+        •Convert EPNM to PortalXperience
+        •Create New PortalXperience
+    - **PortalX Vault**
+        •Create .ptlx EDM
+        •Convert EDM to file
+        •Fetch EDM for Enhanced Use
 
 ### StellarXPAY Screen
 1. `Header`:

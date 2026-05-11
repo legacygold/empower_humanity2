@@ -215,3 +215,95 @@ function openFooterContainer(type) {
     goHome();
   };
 }
+
+/* -------------------------------------------------
+   Mini‑app router with cleanup – loads ANY module/submodule
+   ------------------------------------------------- */
+
+// 1️⃣ Central registry – add a line here for every submodule
+const submodulesBase = {
+  earn   : "C:/Users/ortho/.openclaw/workspace/HMP/EH2/PTLX/ptlx-rewards/earn",
+  redeem : "C:/Users/ortho/.openclaw/workspace/HMP/EH2/PTLX/ptlx-rewards/redeem",
+  relief : "C:/Users/ortho/.openclaw/workspace/HMP/EH2/PTLX/ptlx-rewards/relief",
+  // Example future main‑module submodule
+  // hub : "C:/Users/ortho/.openclaw/workspace/HMP/EH2/EmpowerVerse/hub",
+  // vendors : "C:/Users/ortho/.openclaw/workspace/HMP/EH2/EmpowerFiX/vendors"
+};
+
+// 2️⃣ Track injected elements (for cleanup)
+const injectedElements = [];
+
+// 3️⃣ Helper – injects CSS and tracks it
+function loadCSS(path) {
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = `${path}.css`;
+  document.head.appendChild(link);
+  injectedElements.push(link);
+  return link;
+}
+
+// 4️⃣ Helper – injects JS and tracks it
+function loadJS(path) {
+  const script = document.createElement("script");
+  script.src = `${path}.js`;
+  document.body.appendChild(script);
+  injectedElements.push(script);
+  return script;
+}
+
+// 5️⃣ Cleanup – removes all injected CSS/JS
+function cleanup() {
+  injectedElements.forEach(el => el.remove());
+  injectedElements.length = 0; // Clear the array
+}
+
+// 6️⃣ Core loader – given a key from the registry, pulls in HTML, then CSS and JS
+function loadSubmodule(key) {
+  const basePath = submodulesBase[key];
+  if (!basePath) {
+    console.warn(`Submodule "${key}" not registered`);
+    return;
+  }
+
+  const container = document.getElementById("module-container");
+  
+  // Clean up previous CSS/JS before loading new submodule
+  cleanup();
+  
+  // Clear HTML content
+  container.innerHTML = "";
+
+  // Load HTML
+  fetch(`${basePath}.html`)
+    .then(r => r.ok ? r.text() : Promise.reject("HTML not found"))
+    .then(html => {
+      container.innerHTML = html;
+
+      // Load CSS (quiet‑fail if missing)
+      loadCSS(`${basePath}.css`).onerror = () => console.info(`No CSS for ${key}`);
+      
+      // Load JS (quiet‑fail if missing)
+      loadJS(`${basePath}.js`).onerror = () => console.info(`No JS for ${key}`);
+    })
+    .catch(err => {
+      container.innerHTML = `<p>Failed to load ${key}: ${err.message}</p>`;
+      console.error(err);
+    });
+}
+
+// 7️⃣ On page load, do **nothing** (wait for user interaction)
+
+// 8️⃣ Handle hash changes (e.g., #/earn, #/redeem)
+window.addEventListener("hashchange", () => {
+  const hash = window.location.hash.slice(1); // Remove '#'
+  const key = hash.split('/')[0]; // Get first part (e.g., 'earn' from '#/earn')
+  if (key && submodulesBase[key]) loadSubmodule(key);
+});
+
+// 9️⃣ On initial load, check if there's a hash (e.g., from deep link)
+window.addEventListener("load", () => {
+  const hash = window.location.hash.slice(1);
+  const key = hash.split('/')[0];
+  if (key && submodulesBase[key]) loadSubmodule(key);
+});
