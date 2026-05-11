@@ -73,7 +73,7 @@ button:hover {
   opacity: 0;
   justify-content: center;
   transition: all 0.6s ease;
-  position: absolute;
+  position: fixed;
   width: 100%;
   margin-top: 0px;
   padding: 0px;

@@ -53,14 +53,14 @@ function startCarousel() {
       // 👇 tiny delay prevents Android zoom glitch
       setTimeout(() => {
         moduleCards[currentIndex].classList.add("active");
-      }, 50);
+      }, 30);
 
     } else {
       currentIndex++;
       moduleCards[currentIndex].classList.add("active");
     }
 
-  }, 3000);
+  }, 5000);
 }
 
 // MODULE CLICK
