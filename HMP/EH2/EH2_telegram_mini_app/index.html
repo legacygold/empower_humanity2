@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0", maximum-scale=1.0, user-scalable=no>
+  <title>Empower Humanity 2.0</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="column, left-align">
+    <div class="tier-profile">
+      <span id="profileIcon">
+        <img src="assets/profile-icon.jpg" alt="Profile" class="profile-icon">
+      </span>
+      </span>Tier: [Dynamic from JS]</span>
+    </div>
+    <div class="resonance-detail">
+      <div><br><label for="indicator">Tier Resonance: [Dynamic from JS]%</label><br></div>
+      <progress id="indicator" max="100" value="[Dynamic from JS]">[Dynamic from JS]%</progress>
+    </div>
+  </div>
+  <div class="column, right-align">
+    <div><span>PTLX Balance: [Dynamic from JS]</span></div>
+    <button id="connectWalletBtn" alt="WalletConnect" class="button">Connect Wallet</button>
+    <button id="walletBtn">
+        <img src="assets/wallet-icon.png" alt="Wallet" class="wallet-icon">
+    </button>
+  </div>
+</div>
+
+<!-- WELCOME SCREEN -->
+<div id="welcome" class="card">
+  <h1>Welcome to Empower Humanity 2.0</h1>
+  <p>Let EmpowerBot be your guide</p>
+  <div><img src="assets/logo.jpg" alt="EH2 Logo" class="logo"></div>
+  <div class="welcome-screen-buttons">
+      <button id="enterBtn" class="enterBtn">Enter</button>
+      <div><button id="empowerBotBtn" class="empowerBotBtn">EmpowerBot</button></div>
+      <img id="empowerBotChatBtn" class="empowerBot-icon" src="assets/EmpowerBot_default_avatar.jpg" alt="EmpowerBot" class="empowerBot-icon" onclick="window.open('https://t.me/empower_testbot', '_blank')">
+    </div>
+</div>
+
+<!-- MODULE CAROUSEL -->
+<div id="carousel" class="hidden" align-items="center">
+
+  <div id="carouselHeader">
+    <h1>Explore Empower Humanity 2.0</h1>
+  </div>
+
+  <div class="module active" data-module="stellarxpay">
+    <h2>XPAY</h2>
+    <p>Fast, simple sovereign payments</p>
+    <div><img src="assets/StellarXPAY_visual.jpg" alt="StellarXPAY visual" class="module-visual"></div>
+    <div class="carousel-module-buttons">
+      <button id="moduleEnter" class="moduleEnter">Enter</button>
+      <div><button class="empowerBotBtn">EmpowerBot</button></div>
+      <img class="empowerBot-icon" src="assets/EmpowerBot_default_avatar.jpg" alt="EmpowerBot" class="empowerBot-icon" onclick="window.open('https://t.me/empower_testbot', '_blank')">
+    </div>
+  </div>
+
+  <div class="module" data-module="empowerfix">
+    <h2>EmpowerFiX</h2>
+    <p>Automated asset optimization powered by PortalX</p>
+    <div><img src="assets/EmpowerFiX_visual.jpg" alt="EmpowerFiX visual" class="module-visual"></div>
+    <div class="carousel-module-buttons">
+      <button class="moduleEnter">Enter</button>
+      <div><button class="empowerBotBtn">EmpowerBot</button></div>
+      <img class="empowerBot-icon" src="assets/EmpowerBot_default_avatar.jpg" alt="EmpowerBot" class="empowerBot-icon" onclick="window.open('https://t.me/empower_testbot', '_blank')">
+    </div>
+  </div>
+
+  <div class="module" data-module="stellarverse">
+    <h2>EmpowerVerse</h2>
+    <p>Creative sovereign economy</p>
+    <div><img src="assets/EmpowerVerse_visual.jpg" alt="EmpowerVerse visual" class="module-visual"></div>
+    <div class="carousel-module-buttons">
+      <button class="moduleEnter">Enter</button>
+      <div><button class="empowerBotBtn">EmpowerBot</button></div>
+      <img class="empowerBot-icon" src="assets/EmpowerBot_default_avatar.jpg" alt="EmpowerBot" class="empowerBot-icon" onclick="window.open('https://t.me/empower_testbot', '_blank')">
+    </div>
+  </div>
+</div>
+
+<!-- MAIN MODULE SUBMODULE ORBS    (id: main-orbs) -->
+<div id="main-orbs" class="hidden"></div>
+
+<!-- FOOTER MODULE SUBMODULE ORBS (class: footer-orbs) -->
+<div id="footer-orbs-ptlx" class="footer-orbs hidden"></div>
+<div id="footer-orbs-portalx" class="footer-orbs hidden"></div>
+<div id="footer-orbs-vault" class="footer-orbs hidden"></div>
+
+<!-- PROFILE SCREEN (will be hidden until shown) -->
+<div id="profile" class="body hidden">
+  <div class="header">Profile</div>
+  <div class="content">
+    <!-- Profile fields go here -->
+  </div>
+  <div class="footer">
+    <button class="backBtn" onclick="goBack()">← Back</button>
+  </div>
+</div>
+
+<!-- CONNECT WALLET SCREEN -->
+<div id="connect-wallet" class="body hidden">
+  <div class="header">Connect Wallet</div>
+  <div class="content">
+    <!-- Wallet connection fields go here -->
+  </div>
+  <div class="footer">
+    <button class="backBtn" onclick="goBack()">← Back</button>
+  </div>
+</div>
+
+<!-- WALLET SCREEN -->
+<div id="wallet" class="body hidden">
+  <div class="header">Current Wallet(s)</div>
+  <div class="content">
+    <!-- Wallet balances and portfolio value fields go here -->
+  </div>
+  <div class="footer">
+    <button class="backBtn" onclick="goBack()">← Back</button>
+  </div>
+</div>
+
+<!-- EMPOWERBOT INFO SCREEN -->
+<div id="empowerbot-info" class="body hidden">
+  <div class="header">EmpowerBot Info</div>
+  <div class="content">
+    <!-- EmpowerBot info fields go here -->
+  </div>
+  <div class="footer">
+    <button class="backBtn" onclick="goBack()">← Back</button>
+  </div>
+</div>
+
+<!-- MAIN MODULE SUBMODULE PAGE -->
+<div id="main-sub" class="hidden" align-items="center"></div>
+
+<!-- FOOTER MODULE SUBMODULE PAGE -->
+<div id="footer-sub" class="hidden" align-items="center"></div>
+
+<!-- FOOTER MENU -->
+<div id="footerMenu" class="footer">
+  <div class="footer-item" data-menu="ptlx">PTLX Rewards</div>
+  <div class="footer-item" data-menu="portalx">PortalX</div>
+  <div class="footer-item" data-menu="vault">PortalX Vault</div>
+</div>
+
+<script src="src/wallet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

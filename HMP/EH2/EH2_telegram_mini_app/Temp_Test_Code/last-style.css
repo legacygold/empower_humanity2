@@ -1,0 +1,264 @@
+body {
+  font-family: sans-serif;
+  background: #0f0f1a;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  margin: 0px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.logo {
+  height: 200px;
+  padding: 10px;
+}
+
+.module-visual {
+  height: 300px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.module-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.top-bar {
+  position: fixed;
+  width: 97%;
+  display: flex;
+  margin-top: -80px;
+  justify-content: space-between;
+  padding: 10px;
+  background: #1c1c2e;
+}
+
+.tier-profile {
+  display: flex;
+  height: 30px;
+  width: fit-content;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  container-type: row;
+}
+
+/* Resonance Details */
+.resonance-detail {
+  height: 50px;
+  width: fit-content;
+  justify-content: space-around;
+  align-items: left;
+  gap: 5px; 
+  container-type: column;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+/* Dynamic Content Holders */
+#tier-resonance, #ptlxBalance {
+  flex: 1; /* Allow dynamic text width */
+}
+
+.card {
+  margin-top: 0px;
+  padding: 20px;
+  padding-top: 100px;
+}
+
+button {
+  background: #531A91;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #531A91;
+}
+
+button:hover {
+  box-shadow: 0 0 20px #857535;
+}
+
+.glow-click {
+  box-shadow: 0 0 15px #857535;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+.welcome-screen-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+#carouselHeader {
+  font-size: 1rem;
+  padding: 10px 5px;
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+
+.module {
+  opacity: 0;
+  justify-content: center;
+  transition: all 0.6s ease;
+  position: fixed;
+  width: 100%;
+  margin-top: 0px;
+  padding: 0px;
+  padding-top: 10px;
+}
+
+.module.active {
+  opacity: 1;
+  justify-content: center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  position: relative;
+  margin-top: 0px;
+  padding: 0px;
+  padding-top: 10px;
+}
+
+.carousel-module-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.main-module-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+#subModules {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0px;
+  padding: 20px;
+  padding-top: 100px;
+}
+
+.sub-header {
+  width: 100%;
+  padding: 15px 10px 10px;
+}
+
+.orb-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 15px 0;
+}
+
+.orb {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #531A91, black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #531A91;
+  transition: transform 0.3s;
+}
+
+.orb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 25px #857535;
+}
+
+.profile-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0px;
+}
+
+.wallet-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.empowerBot-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0px;
+  margin-top: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #531A91;
+}
+
+.empowerBot-icon:hover {
+  box-shadow: 0 0 20px #857535;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 98%;
+  background: black;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0 calc(20px + env(safe-area-inset-bottom));
+  border-top: 1px solid #857535;
+  z-index: 100;
+}
+
+.footer-item {
+  color: #857535;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.footer-item:active {
+  color: white;
+}
+
+.footer-item:hover {
+  color: #531A91;
+}
+
+.footer-module-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+#indicator {
+  width: 100px;
+  height: 20px;
+  padding: 0px;
+  margin: 0px;
+  accent-color: #531A91;
+  align-items: left;
+}
