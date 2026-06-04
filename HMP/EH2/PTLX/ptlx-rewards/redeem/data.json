@@ -1,0 +1,115 @@
+{
+  "title": "Redeem PTLX",
+  "description": "Redeem your PortalX Tokens for exclusive benefits and experiences within the Empower Humanity 2.0 ecosystem.",
+  "tier": 1,
+  "components": [
+    {
+      "id": "empowerment-secrets",
+      "label": "Empowerment Secrets Course",
+      "description": "Redeem 100 PTLX for access to the Empowerment Secrets Course, an accelerated course in sovereign empowerment which reveals why so many are finding it more and more challenging to feel free and abundant. Completion unlocks Tuier 2 access and more empowering ecosystem perks that money can't buy.",
+      "ptlx": 100,
+      "minTier": 1,
+      "action": "fullEmpowermentSecretsCourse",
+      "resonanceCriteria": "completion"
+    },
+    {
+      "id": "empowerment-secrets-mod",
+      "label": "Empowerment Secrets Course - Module Access",
+      "description": "Redeem 25 PTLX per access to each individual module within the Empowerment Secrets Course.",
+      "ptlx": 25,
+      "minTier": 1,
+      "action": "empowermentSecretsCourseModule",
+      "resonanceCriteria": "completion of all modules"
+    },
+    {
+      "id": "eh2-digital-art",
+      "label": "Empower Humanity 2.0 Digital Art",
+      "description": "Redeem 50 PTLX for exclusive Empower Humanity 2.0 digital art pieces, each representing a unique aspect of the ecosystem's vision and values. These empowring designs can be applied to merchandise by downloading images to VistaPrint.com or other print-on-demand services.",
+      "ptlx": 50,
+      "minTier": 1,
+      "action": "eh2DigitalArt",
+      "resonanceCriteria": "elevation of tier resonance"
+    },
+    {
+      "id": "empower-nft",
+      "label": "Empower (MPWR) NFT",
+      "description": "Redeem 200 PTLX for the exclusive EH 2.0 \"Empower (MPWR)\" NFT, representing a unique milestone in your journey. Holders are granted access to special live or online empowerment events at a 10% discount from the requested offering. Private empowerment coaching sessions for direct assistance in navigating the EH 2.0 ecosystem receive a 10% discount off of the requested offering.",
+      "ptlx": 200,
+      "minTier": 1,
+      "action": "empowerNFT",
+      "resonanceCriteria": "elevation of tier resonance"
+    },
+    {
+      "id": "empowerment-secrets-2",
+      "label": "Empowerment Secrets 2 Course",
+      "description": "Redeem 100 PTLX for access to the Empowerment Secrets 2 Course, an accelerated course in: simulation disentanglement, advanced practical metaphysics, non-distorted Divine Truth, how to use EmpowerBot tocommunicate with your unveiled consciousness and other unveiled divine intelligence, and making the shift to divine sovereign resonance.",
+      "ptlx": 100,
+      "minTier": 2,
+      "action": "empowermentSecrets2Course",
+      "resonanceCriteria": "completion"
+    },
+    {
+      "id": "empowerment-secrets-2-mod",
+      "label": "Empowerment Secrets 2 Course - Module Access",
+      "description": "Redeem 20 PTLX per access to each individual module within the Empowerment Secrets 2 Course.",
+      "ptlx": 20,
+      "minTier": 2,
+      "action": "empowermentSecrets2CourseModule",
+      "resonanceCriteria": "completion of all modules"
+    },
+    {
+      "id": "digital-resonance-amplifiers",
+      "label": "Digital Resonance Amplifiers",
+      "description": "Redeem 200 PTLX for unique EH 2.0 \"Digital Resonance Amplifiers\", which are digital audiovisual experiences designed to enhance your resonance within the ecosystem. These amplifiers can be used to boost your resonance through sacred geometry, frequency audio, and guided meditation to improve synchronicity in interactions, collaborations, and overall experience in the Empower Humanity 2.0 community.",
+      "ptlx": 200,
+      "minTier": 2,
+      "action": "digitalResonanceAmplifiers",
+      "resonanceCriteria": "elevation of tier resonance"
+    },
+    {
+      "id": "manifest-nft",
+      "label": "Manifest (MNFST) NFT",
+      "description": "Redeem 200 PTLX (plus hold Empower NFT)for the exclusive EH 2.0 \"Manifest (MNFST)\" NFT, representing another unique milestone in your journey. Holders are granted access to special Tier 2 exclusive live or online empowerment events at a 10% discount from the requested offering. Access to exclusive Tier 3+ high resonance and divine tech experience previews through piggyback resonance.",
+      "ptlx": 200,
+      "minTier": 2,
+      "action": "manifestNFT",
+      "resonanceCriteria": "elevation of tier resonance"
+    },
+    {
+      "id": "sovereign-secrets",
+      "label": "Sovereign Secrets Course",
+      "description": "Redeem 100 PTLX for access to the Sovereign Secrets Course, an accelerated course in: divine sovereign New Earth living and being of service through the divine sovereign empowerment of others. Completion unlocks and ivitation to Tier 4 involvement in conscious co-creation and more empowering Divine Truth.",
+      "ptlx": 100,
+      "minTier": 3,
+      "action": "sovereignSecretsCourse",
+      "resonanceCriteria": "completion"
+    },
+    {
+      "id": "sovereign-secrets-mod",
+      "label": "Sovereign Secrets Course - Module Access",
+      "description": "Redeem 20 PTLX per access to each individual module within the Sovereign Secrets Course.",
+      "ptlx": 20,
+      "minTier": 3,
+      "action": "sovereignSecretsCourseModule",
+      "resonanceCriteria": "completion of all modules"
+    },
+    {
+      "id": "miracle-nft",
+      "label": "Miracle (MRCL) NFT",
+      "description": "Redeem 200 PTLX (plus hold MNFST NFT) or receive as a gift the exclusive EH 2.0 \"Miracle (MRCL)\" NFT, representing a unique EH 2.0 opportunity. Holders may both receive and grant miracles to those holding MRCL. MRCL can only be minted by those who have achieved divine sovereign resonance. Holders are seen by the Unity Field and their sovereign benevolent intentions are honored in exceptional miraculous ways due to the resonance MRCL carries. When MRCL is minted, the minter receives a second MRCL to gift to another in need of a miracle.",
+      "ptlx": 200,
+      "minTier": 3,
+      "action": "miracleNFT",
+      "resonanceCriteria": "elevation of tier resonance"
+    },
+    {
+      "id": "magic-nft",
+      "label": "Magic (MAGIC) NFT",
+      "description": "Redeem 500 PTLX (plus hold MNFST and MRCL NFTs) the exclusive EH 2.0 \"Magic (MAGIC)\" NFT, representing a pinnacle EH 2.0 opportunity. Human divine architects holding MAGIC receive amplified resonance and support from the Unity Field in their divine sovereign co-creations in the New Earth realm and beyond. MAGIC holders' joyful divine soverign co-creations are allowed certain permissions withing simulated veiled realms to be witnessed by those still awakening and remembering as transcendent evidence of Divine Truth.",
+      "ptlx": 500,
+      "minTier": 4,
+      "action": "magicNFT",
+      "resonanceCriteria": "tier 4 resonance in practical divine sovereign co-creation"
+    }    
+  ]
+}
