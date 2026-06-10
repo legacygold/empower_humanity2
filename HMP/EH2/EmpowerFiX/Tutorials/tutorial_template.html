@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EmpowerFiX – Tutorials</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Tiny accessibility tweaks – keep your existing .body styling */
+    .tutorial-module { margin: 2rem auto; max-width: 800px; }
+    .tutorial-video   { width: 100%; height: auto; max-height: 400px; }
+    .quiz-button     { margin-top: 1rem; padding: .5rem 1rem; }
+    .sr-only {               /* Screen‑reader only text */
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0);
+      border: 0;
+    }
+  </style>
+</head>
+<body class="body">
+  <!-- Header / Footer stay the same as your mini‑app -->
+  <div id="tutorials" class="body">
+    <div class="header">EmpowerFiX Tutorials</div>
+
+    <!-- ==== MODULE 1 ==== -->
+    <section class="tutorial-module" aria-labelledby="mod1-title">
+      <h2 id="mod1-title">Module 1: Getting Started</h2>
+
+      <!-- Video placeholder (replace with <video> or YouTube embed) -->
+      <div class="tutorial-video" aria-label="Tutorial video for Module 1">
+        <!-- Example: <video controls><source src="tut1.mp4" type="video/mp4"></video> -->
+        [ Video: Getting Started – replace with actual file or embed ]
+      </div>
+
+      <!-- Optional quiz button -->
+      <button class="quiz-button" onclick="alert('Quiz placeholder – implement later')">
+        Take Quiz <span class="sr-only">for Module 1</span>
+      </button>
+    </section>
+
+    <!-- ==== MODULE 2 ==== -->
+    <section class="tutorial-module" aria-labelledby="mod2-title">
+      <h2 id="mod2-title">Module 2: Navigating the Ecosystem</h2>
+      <div class="tutorial-video" aria-label="Tutorial video for Module 2">
+        [ Video: Navigating the Ecosystem – replace with actual file or embed ]
+      </div>
+      <button class="quiz-button" onclick="alert('Quiz placeholder – implement later')">
+        Take Quiz <span class="sr-only">for Module 2</span>
+      </button>
+    </section>
+
+    <!-- Add more modules as needed – copy the <section> block -->
+
+    <div class="footer">
+      <button class="backBtn" onclick="popScreen()">← Back</button>
+      <button class="empowerBotBtn" onclick="minimizeApp()">EmpowerBot</button>
+    </div>
+  </div>
+</body>
+</html>
