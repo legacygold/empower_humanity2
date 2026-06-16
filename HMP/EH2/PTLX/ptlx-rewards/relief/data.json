@@ -1,3 +1,61 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7e1598c156aa086cd75bc0e73154a1417c908d8e10179378809cf08da41e2d52
-size 2289
+{
+  "title": "PTLX Relief Program",
+  "description": "Utilize PTLX tokens for relief of the rising costs of living, including food, housing, and other essential needs. This program is designed to provide support to those who earn PTLX through engagement in empowerment activities within the Empower Humanity 2.0 ecosystem.",
+  "tier": 1,
+  "components": [
+    {
+      "id": "food-relief",
+      "label": "Food Relief",
+      "description": "Exchange up to 150 PTLX for one grocery payment per month up to 300 USDC value.",
+      "ptlx": 150,
+      "minTier": 1,
+      "action": "claimFoodRelief",
+      "resonanceCriteria": "PTLX use for relief"
+    },
+    {
+      "id": "housing-relief",
+      "label": "Housing Relief",
+      "description": "Exchange up to 1250 PTLX for rent/mortgage relief up to 2500 USDC value.",
+      "ptlx": 1250,
+      "minTier": 1,
+      "action": "claimHousingRelief",
+      "resonanceCriteria": "PTLX use for relief"
+    },
+    {
+      "id": "utilities-relief",
+      "label": "Utilities Relief",
+      "description": "Exchange up to 250 PTLX for utilities assistance up to 500 USDC value.",
+      "ptlx": 250,
+      "minTier": 1,
+      "action": "claimUtilitiesRelief",
+      "resonanceCriteria": "PTLX use for relief"
+    },
+    {
+      "id": "cell-service-relief",
+      "label": "Cell Service Relief",
+      "description": "Exchange up to 50 PTLX for cell phone service assistance up to 100 USDC value.",
+      "ptlx": 50,
+      "minTier": 1,
+      "action": "claimCellServiceRelief",
+      "resonanceCriteria": "PTLX use for relief"
+    },
+    {
+      "id": "internet-service-relief",
+      "label": "Internet Service Relief",
+      "description": "Exchange up to 50 PTLX for internet service assistance up to 100 USDC value.",
+      "ptlx": 50,
+      "minTier": 1,
+      "action": "claimInternetServiceRelief",
+      "resonanceCriteria": "PTLX use for relief"
+    },
+    {
+      "id": "transportation-relief",
+      "label": "Transportation Relief",
+      "description": "Exchange up to 250 PTLX for transportation assistance up to 500 USDC value.",
+      "ptlx": 250,
+      "minTier": 1,
+      "action": "claimTransportationRelief",
+      "resonanceCriteria": "PTLX use for relief"
+    }
+  ]
+}

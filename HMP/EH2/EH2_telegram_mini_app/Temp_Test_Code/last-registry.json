@@ -1,3 +1,67 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6c10c62131ab5ae764a4453f1b1963cc5d1858cd90761623ffbfe8bb9c2016f8
-size 3130
+{
+    "ptlx": {
+      "name": "PTLX Rewards",
+      "type": "footer",
+      "minTier": 1,
+      "submodules": {
+        "earn": { "name": "Earn PTLX", "path": "../PTLX/ptlx-rewards/earn", "minTier": 1 },
+        "redeem": { "name": "Redeem PTLX", "path": "../PTLX/ptlx-rewards/redeem", "minTier": 2},
+        "relief": { "name": "PTLX Relief Program", "path": "../PTLX/ptlx-rewards/relief", "minTier": 2 }
+      }
+    },
+    "portalx": {
+      "name": "PortalX",
+      "type": "footer",
+      "minTier": 2,
+      "submodules": {
+        "create": { "name": "Create .ptlx EPNM", "path": "../PortalX/create-epnm", "minTier": 2, "minTierRes": 75 },
+        "convert": { "name": "Convert EPNM to PortalXperience", "path": "../PortalX/convert", "minTier": 4 },
+        "create-new": { "name": "Create New PortalXperience", "path": "../PortalX/create-new", "minTier": 4 }
+      }
+    },
+    "vault": {
+      "name": "PortalX Vault",
+      "type": "footer",
+      "minTier": 2,
+      "submodules": {
+        "create-edm": { "name": "Create .ptlx EDM", "path": "../PortalX-Vault/create-edm", "minTier": 2, "minTierRes": 75 },
+        "convert": { "name": "Convert EDM to File", "path": "../PortalX-Vault/convert", "minTier": 4 },
+        "fetch-edm": { "name": "Fetch EDM for Enhanced Use", "path": "../PortalX-Vault/fetch-edm", "minTier": 4 }
+      
+      }
+    },
+    "stellarxpay": {
+      "name": "XPAY",
+      "type": "main",
+      "minTier": 1,
+      "submodules": {
+        "cash-in": { "name": "Cash In", "path": "../StellarXPAY/Cash-In", "minTier": 1 },
+        "cash-out": { "name": "Cash Out", "path": "../StellarXPAY/Cash-Out", "minTier": 1 },
+        "quick-pay": { "name": "Quick Pay", "path": "../StellarXPAY/Quick-Pay", "minTier": 1 },
+        "xpaylite": { "name": "XPAY LITE", "path": "../StellarXPAY/XPAY-LITE", "minTier": 1 }
+      }
+    },
+    "empowerfix": {
+      "name": "EmpowerFiX",
+      "type": "main",
+      "minTier": 1,
+      "submodules": {
+        "tutorials": { "name": "Tutorials", "path": "../EmpowerFiX/Tutorials", "minTier": 1 },
+        "portalx-lite": { "name": "PortalX LITE", "path": "../EmpowerFiX/PortalX-LITE", "minTier": 1 },
+        "marketplace": { "name": "Marketplace", "path": "../EmpowerFiX/Marketplace", "minTier": 1 },
+        "vendors": { "name": "Vendors", "path": "../EmpowerFiX/Vendors", "minTier": 1 },
+        "fundexit": { "name": "FunDEXit", "path": "../EmpowerFiX/FunDEXit", "minTier": 1 }
+      }
+    },
+    "stellarverse": {
+      "name": "EmpowerVerse",
+      "type": "main",
+      "minTier": 2,
+      "submodules": {
+        "creation-hub": { "name": "Creation Hub", "path": "../StellarVerse/Creation-Hub", "minTier": 1},
+        "live-experience": { "name": "Live Experience", "path": "../StellarVerse/Live-Experience", "minTier": 1 },
+        "empowerverse-shop": { "name": "EmpowerVerse Shop", "path": "../StellarVerse/StellarVerse-Shop", "minTier": 1 },
+        "portalxperience": { "name": "PortalXperience", "path": "../StellarVerse/PortalXperience", "minTier": 2, "minTierRes": 75 }
+      }
+    }
+}
