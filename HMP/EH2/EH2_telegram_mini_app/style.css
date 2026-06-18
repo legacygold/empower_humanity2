@@ -4,9 +4,10 @@ body {
   color: white;
   text-align: center;
   justify-content: center;
+  align-items: center;
   margin: 0px;
   padding-top: 80px;
-  padding-bottom: 80px;
+  padding-bottom: 60px;
 }
 
 .logo {
@@ -74,6 +75,7 @@ body {
   margin-top: 0px;
   padding: 20px;
   padding-top: 100px;
+  align-items: center;
 }
 
 button {
@@ -124,6 +126,7 @@ button:hover {
   justify-content: center;
   transition: all 0.6s ease;
   position: fixed;
+  align-items: center; 
   width: 100%;
   margin-top: 0px;
   margin-bottom: 15px;
@@ -162,16 +165,16 @@ button:hover {
   position: fixed;            /* lock it to the viewport */
   top: 0px;
   left: 0px;
-  width: 100%;               
+  width: 97%;               
   height: 350px;              /* hard‑cap height */
-  max-height: 350px;
-  min-width: auto;          /* shrink on smaller screens */
+  max-height: 350px;          /* shrink on smaller screens */
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   margin: auto;
   gap: 20px;
-  padding: 15px 15px;
+  padding: 15px 10px;
   padding-top: 100px;
   background-size: cover;
   border-radius: 75%;
