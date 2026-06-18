@@ -35,7 +35,7 @@ body {
   display: flex;
   margin-top: -80px;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: 5px 10px;
   box-sizing: border-box;
   background: #1c1c2e;
   align-items: center;
@@ -82,7 +82,8 @@ button {
   border: none;
   padding: 10px 20px;
   margin-top: 20px;
-  margin-left: 5px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 0 10px #531A91;
@@ -113,7 +114,7 @@ button:hover {
 #carouselHeader {
   font-size: 1rem;
   padding: 10px 5px;
-  margin-bottom: 0;
+  margin-bottom: -50px;
   margin-top: 20px;
 }
 
@@ -158,7 +159,7 @@ button:hover {
   position: fixed;            /* lock it to the viewport */
   top: 0px;
   left: 0px;
-  width: 100%;                /* full width */
+  width: 97%;               
   height: 350px;              /* hard‑cap height */
   max-height: 350px;          /* shrink on smaller screens */
   display: flex;
@@ -173,8 +174,10 @@ button:hover {
 }
 
 .sub-header {
-  width: 100%;
-  padding: 15px 10px 10px;
+  width: 97%;
+  padding: 15px 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .orb-container {
@@ -211,8 +214,8 @@ button:hover {
 }
 
 .tier-profile .profile-icon {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   display: flex;
   align-items: center;

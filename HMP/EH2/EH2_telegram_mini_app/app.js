@@ -390,10 +390,10 @@ async function loadSubmodule(parentKey, subKey) {
   } catch (err) {
     // Show error placeholder if HTML fails to load
     container.innerHTML = `
-      <div class="sub-header" style="padding:1rem;text-align:center;">
+      <div class="sub-header" align="center">
         <h2>${sub.name}</h2>
         <p style="color:#e892f7;">${err.message}</p>
-        <button onclick="bindCloseButton()">← Close</button>
+        <button class="closeBtn" onclick="bindCloseButton()">← Close</button>
       </div>`;
     console.error(err);
   }
