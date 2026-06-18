@@ -13,11 +13,12 @@ body {
 .logo {
   height: 300px;
   padding: 0px;
+  margin: -10px auto;
 }
 
 .module-visual {
   height: 300px;
-  margin: 20px auto;
+  margin: -10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,7 +129,7 @@ button:hover {
   position: fixed;
   align-items: center; 
   width: 100%;
-  margin-top: 0px;
+  margin-top: 5px;
   margin-bottom: 15px;
   padding: 0px;
   padding-top: 10px;
@@ -140,7 +141,7 @@ button:hover {
   justify-content: center;
   transition: opacity 0.4s ease, transform 0.4s ease;
   position: relative;
-  margin-top: 0px;
+  margin-top: 5px;
   margin-bottom: 15px;
   padding: 0px;
   padding-top: 10px;
@@ -170,7 +171,7 @@ button:hover {
   transform: translateX(-50%); /* shift left by 50 % of its own width → centre */
   width: 97%; /* keep the existing width */
   max-height: 350px; /* keep the height you already have */
-  padding: 15px 5px; /* a little breathing room */
+  padding: 15px 0px; /* a little breathing room */
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* centre the orbs inside the container */
@@ -195,7 +196,6 @@ button:hover {
   align-items: center;
   flex-wrap: wrap;
   margin-left: -10 px;
-  margin-right: -10 px;
   margin-bottom: 10px;
   gap: 20px;
   padding: 20px 20px;
