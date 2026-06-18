@@ -158,22 +158,12 @@ button:hover {
   margin-top: 20px;
 }
 
-#main-orbs, .footer-orbs {
-  position: fixed;            /* lock it to the viewport */
-  top: 0px;
-  left: 0px;
-  width: 97%;               
-  height: 350px;              /* hard‑cap height */
-  max-height: 350px;          /* shrink on smaller screens */
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: auto;
-  gap: 20px;
-  padding: 15px 10px;
-  padding-top: 100px;
-  background-size: cover;
-  border-radius: 75%;
+.main-orbs, .footer-orbs {
+  position: relative;        /* stay in document flow */
+  width: 100%;
+  max-width: 400px;          /* keep a sensible max width */
+  gap: 15px;                /* keep spacing between orbs */
+  padding: 15px 0;           /* remove extra top padding that pushes content down */
 }
 
 .sub-header {
