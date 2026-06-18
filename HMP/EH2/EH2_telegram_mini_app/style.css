@@ -177,8 +177,9 @@ button:hover {
   flex-wrap: wrap;
   margin-bottom: 5px;
   gap: 20px;
-  padding: 15px 10px;
+  padding: 15px 5px;
   padding-top: 90px;
+  padding-bottom: 5px;
   background-size: cover;
   border-radius: 75%;
 }
