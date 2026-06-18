@@ -73,6 +73,7 @@ body {
 
 .card {
   margin-top: 0px;
+  margin-bottom: 5px;
   padding: 20px;
   padding-top: 100px;
   align-items: center;
@@ -141,6 +142,7 @@ button:hover {
   transition: opacity 0.4s ease, transform 0.4s ease;
   position: relative;
   margin-top: 0px;
+  margin-bottom: 15px;
   padding: 0px;
   padding-top: 10px;
 }
@@ -166,14 +168,14 @@ button:hover {
   position: fixed;            /* lock it to the viewport */
   top: 0px;
   left: 0px;
-  width: 97%;               
+  width: fit-content;               
   height: 350px;              /* hard‑cap height */
   max-height: 350px;          /* shrink on smaller screens */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: auto;
+  margin-bottom: 5px;
   gap: 20px;
   padding: 15px 10px;
   padding-top: 90px;
