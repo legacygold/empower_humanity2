@@ -5,24 +5,24 @@
   padding: 1rem;
 }
 
-.fundexit-module {
+.quickpay-module {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px 16px;
 }
 
-.fundexit-header {
+.quickpay-header {
   text-align: center;
   margin-bottom: 24px;
 }
 
-.fundexit-header h2 {
+.quickpay-header h2 {
   font-size: 1.6rem;
   color: #d4a0ff;
   margin-bottom: 4px;
 }
 
-.fundexit-subtitle {
+.quickpay-subtitle {
   font-size: 0.9rem;
   color: #a888c8;
   margin-bottom: 16px;
