@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0", maximum-scale=1.0, user-scalable=no>
+  <title>Wallet Handling</title>
+  <link rel="stylesheet" href="src/wallet/wallet.css">
+</head>
+<body>
+<!-- ==== CONNECT WALLET SCREEN ==== -->
+<div class="content" style="display: flex; flex-direction: column; align-items: center; margin-top: 40px;">
+<h2>Connect Wallet(s)</h2>
+<div id="content-subtitle">Connect Stellar & TON DeFi Account wallets to the EH 2.0 ecosystem</div>
+    <div>
+        <!-- ==== SECTION TEMPLATE ==== -->
+        <div class="expandable-section" data-section-id="intro">
+        <h3 class="section-title">🚀 Learn how to get started with Empower Humanity 2.0 Wallets</h3>
+        <details>
+            <summary>Click arrow for details</summary>
+            <p class="section-intro"></p>
+            This section walks you through setting up the two wallet types you’ll need for the Empower Humanity 2.0 ecosystem:
+            <ul>
+            <details>
+                <summary><strong>Stellar (EmpowerFiX or Lobstr) wallet</strong> – Your entry point to EH 2.0's globally decentralized sovereign value financial ecosystem on the Stellar Network!</summary>
+                <!-- Video Tutorial (YouTube embed)- How to Create and Connect a Stellar Wallet -->
+                <p class="section-video">
+                <iframe id="odysee-iframe" style="width:100%; aspect-ratio:16 / 9;" src="https://odysee.com/%24/embed/Seed-of-Life%3A7?r=BfyWpUUx7ycY8pFAuqeTBqns35F6Wgfb&autoplay=true" allowfullscreen></iframe>
+                </p>
+                
+                <!-- Stellar image -->
+                <p class="section-image">
+                <img src="https://cdn.sanity.io/images/e2r40yh6/production-i18n/0a68a5dca134b65df72fd765865b65af68233e64-3104x1072.png?w=1440&auto=format&dpr=2" alt="Wallet illustration" style="max-width:100%; height:auto;">
+                </p>
+                
+                <!-- Link to Lobstr (Stellar) Account external help -->
+                <p class="section-link">
+                <a href="https://lobstr.freshdesk.com/support/home" target="_blank" rel="noopener">🔗 Lobstr (Stellar) Help Center</a>
+                </p>
+
+                <!-- Link to WalletConnect (Lobstr) external help -->
+                <p class="section-link">
+                <a href="https://lobstr.freshdesk.com/support/solutions/folders/151000041346" target="_blank" rel="noopener">🔗 Lobstr WalletConnect Help Center</a>
+                </p>
+
+                <!-- Link to “Learn more about Stellar→” -->
+                <p class="section-action">
+                <a href="#" class="btn-primary" onclick="window.location.href='https://stellar.org/'">Learn more about Stellar→</a>
+                </p>
+            </details>
+            <p>
+            <details>
+                <summary><strong>TON DeFi Account wallet</strong> – The Telegram integrated sovereign‑grade wallet that lets you hold, manage, and utilize TON‑based assets easily within Telegram!</summary>
+                <!-- Video Tutorial (YouTube embed)- How to Create and Connect a TON DeFi Account Wallet -->
+                <p class="section-video">
+                <iframe display="flex" src="https://www.youtube.com/embed/PLACEHOLDER_ID"
+                title="Wallet setup tutorial" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </p>
+                
+                <!-- TON image -->
+                <p class="section-image">
+                <img src="https://avatars.githubusercontent.com/u/55018343?s=200&v=4" alt="Wallet illustration" style="max-width:100%; height:auto;">
+                </p>
+                
+                <!-- Link to TON DeFi Account external help -->
+                <p class="section-link">
+                <a href="https://help.wallet.tg/article/1032-welcome-to-defi-account" target="_blank" rel="noopener">🔗 TON DeFi Account Help Center</a>
+                </p>
+
+                <!-- Link to TON Connectexternal help -->
+                <p class="section-link">
+                <a href="https://help.wallet.tg/article/281-ton-connect-and-how-to-connect-apps" target="_blank" rel="noopener">🔗 TON Connect Help Center</a>
+                </p>
+
+                <!-- Link to “Learn more about TON (The Open Network)→” -->
+                <p class="section-action">
+                <a href="#" class="btn-primary" onclick="window.location.href='https://ton.org/'">Learn more about TON (The Open Network)→</a>
+                </p>
+            </details>
+            </ul>
+            </p>
+
+
+            </div>
+        </details>
+    </div>
+    <div>
+        <div class="expandable-section" data-section-id="intro">
+        <h3 class="section-title">Connect Stellar Wallet(s)</h3>
+        <p class="section-connect-stellar">
+        Connect your Stellar wallet to access the decentralized finance layer.
+        </p>
+        <button id="buttonWrapper">Connect Stellar Wallet</button>
+        </div>
+    </div>
+    <div>
+        <div class="expandable-section" data-section-id="intro">
+        <h3 class="section-title">Connect TON DeFi Account Wallet(s)</h3>
+        <p class="section-connect-ton">
+        Connect your TON DeFi Account wallet to access the decentralized finance layer.
+        </p>
+        <button id="tonConnectBtn">Connect TON DeFi Account Wallet</button>
+        </div>
+    </div>   
+<div><button id="closeBtn" class="closeBtn">← Close</button></div>
+</div>
+
+<!-- ==== CONNECTED WALLETS SCREEN ==== -->
+<div class="content" style="display: flex; flex-direction: column; align-items: center; margin-top: 40px;">
+<h2>Connected Wallets</h2>
+<div id="connectedList">No wallets connected yet. Connect Stellar or TON DeFi Account wallets to see balances and value trends.</div>
+<div><button id="closeBtn" class="closeBtn">← Close</button></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/tonweb@0.3.0/dist/tonweb.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tonweb-wallets-kit@1.0.0/dist/tonweb-wallets-kit.min.js"></script>
+<script type="module" src="src/wallet/wallet.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+body {
+  font-family: sans-serif;
+  background: #0f0f1a;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  padding-top: 80px;
+  padding-bottom: 100px;
+}
+
+.body.hidden { display:none; }
+
+#buttonWrapper {
+  background: #531A91;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #531A91;
+}
+
+#buttonWrapper:hover {
+  box-shadow: 0 0 20px #857535;
+}
+
+#content-subtitle {
+  font-size: 0.9rem;
+  color: #a888c8;
+  margin-bottom: 16px;
+}
+
+#connectedList {
+  font-size: 0.9rem;
+  color: #a888c8;
+  margin-bottom: 16px;
+}
+
+/* ------- Intro / Connect screen ------------------------------------------- */
+.connect-wallet-screen {
+background:#f9f9f9;
+border:1px solid #ddd;
+border-radius:6px;
+padding:16px;
+}
+.connect-wallet-screen .header {
+text-align:center;
+font-weight:600;
+}
+.connect-wallet-screen .section-note {
+margin-top:12px;
+font-size:0.85rem;
+color:#555;
+}
+.connect-wallet-screen button { margin-top:12px; }
+.connected-wallets { margin-top:12px; }
+
+.expandable-section {
+background: rgba(80, 30, 130, 0.2);
+border: 1px solid rgba(160, 100, 200, 0.3);
+border-radius: 12px;
+padding: 18px 16px;
+transition: all 0.25s ease;
+margin: 20px;
+}
+
+.expandable-section.collapsed {
+max-height: 20px;
+overflow: hidden;
+}
+
+.expandable-section .section-title {
+margin: 0;
+font-size: 1.2rem;
+cursor: pointer;
+}
+
+.expandable-section .section-intro {
+margin-top: 8px;
+}

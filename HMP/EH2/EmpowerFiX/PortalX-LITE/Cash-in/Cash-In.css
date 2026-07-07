@@ -1,0 +1,60 @@
+#main-sub {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.cashin-module {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+
+.cashin-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.cashin-header h2 {
+  font-size: 1.6rem;
+  color: #d4a0ff;
+  margin-bottom: 4px;
+}
+
+.cashin-subtitle {
+  font-size: 0.9rem;
+  color: #a888c8;
+  margin-bottom: 16px;
+}
+
+.ptlx-balance-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(120, 60, 160, 0.25);
+  border: 1px solid #7b2fbf;
+  border-radius: 24px;
+  padding: 8px 20px;
+  margin: 0 auto;
+}
+
+.ptlx-label {
+  font-size: 0.85rem;
+  color: #c0a0d8;
+}
+
+.ptlx-amount {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #f0d0ff;
+  min-width: 30px;
+  text-align: center;
+}
+
+.ptlx-unit {
+  font-size: 0.75rem;
+  color: #9060b0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

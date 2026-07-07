@@ -1,38 +1,75 @@
 // wallet.js 
 
-// Placeholders for wallet generation, encryption, and signing logic funtions
-function createTONwallet() {} // Will be included on both "Connect Wallet" and "Wallet(s) Dashboard" screens, allowing users to create a new TON wallet (or import an existing one). Will use "TON Connect" to connect to Tonkeeper wallet and manage keys locally in the mini‑app (encrypted with password or biometric‑derived key).
-function createStellarWallet() {} // Will be included on both "Connect Wallet" and "Wallet(s) Dashboard" screens, allowing users to create a new Stellar wallet (or import an existing one). Will use "WalletConnect" to connect to Lobstr Stellar wallet or use internal EmpoerFiX Stellar wallet and manage keys locally in the mini‑app (encrypted with password or biometric‑derived key).
+import { StellarWalletsKit } from "@creit-tech/stellar-wallets-kit/sdk";
+import { defaultModules } from "@creit-tech/stellar-wallets-kit/modules/utils";
+import { WalletConnectModule } from "@creit-tech/stellar-wallets-kit/modules/wallet-connect";
+import { SwkAppDarkTheme } from "@creit-tech/stellar-wallets-kit/types";
 
-// Placeholder for "Connect Wallet" UI logic
-function connectTONwallet() {} // Will include logic to use "TON Connect" to connect to Tonkeeper wallet
-function connectStellarWallet() {} // Will include logic to use "WalletConnect" to connect to Lobstr Stellar wallet or use internal EmpoerFiX Stellar wallet
-  
+// 1️⃣ Initialise SWK (only once)
+StellarWalletsKit.init({
+theme: SwkAppDarkTheme,
+modules: [
+...defaultModules(), // Lobstr, Freighter, etc.
+new WalletConnectModule({
+projectId: "48b7bf0dacf7920c182f112b3cc388a8", // your Project ID
+metadata: {
+name: "Empower Humanity 2.0 Wallet Management",
+description: "Connect wallet for EH 2.0",
+icons: ["https://legacygold.github.io/empower_humanity2/HMP/EH2/EH2_telegram_mini_app/assets/logo.JPG"],
+url: "https://legacygold.github.io/empower_humanity2/",
+},
+}),
+],
+});
+
+// 2️⃣ Define buttons
+const buttonWrapper = document.querySelector("#buttonWrapper");
+StellarWalletsKit.createButton(buttonWrapper);
+
+// 3️⃣ Wire Stellar WalletConnect
+buttonWrapper.addEventListener("click", async () =>  {
+try {
+// Show wallet selector
+const { address } = await StellarWalletsKit.authModal(); // Requires setup below
+console.log('Connected Stellar address:', address);
+alert('Connected wallet:\\n' + address);
+// TODO: Save address and update UI
+} catch (err) {
+console.error('Stellar connect failed:', err);
+}
+});
+
+/* ---------------- TON CONNECT (placeholder) ---------------- */
+function connectTONwallet() {
+// TODO: add TON Connect library integration here
+console.log('TON Connect not yet implemented');
+}
+
+// Show "Connected Wallets"
+document.getElementById('openConnectedWallets').onclick = () => {
+hideAll();
+show('connected-wallets-screen');
+renderConnectedWallets(); // pull from stored data
+};
+
 // Placeholdr for "Wallet(s) Dashboard" UI logic
 function showTONwallet() {} // Will show connected TON wallet (s) and allow users to manage them (e.g. view balance, transaction history, etc.)
 function showStellarWallet() {} // Will show connected Stellar wallet (s) and allow users to manage them (e.g. view balance, transaction history, etc.)
 
-
-// Old placeholder for Stellar keypair handling
-export interface Wallet {
-  publicKey: string;   // Stellar address
-  encryptedSecret: string; // stored encrypted locally
+function hideAll() {
+document.querySelectorAll('.body.hidden').forEach(el => el.classList.add('hidden'));
 }
 
-export function generateWallet(): Wallet {
-  // TODO: replace with real Stellar Keypair.random() later
-  return {
-publicKey: "GADummyAddressForTestingOnlyxxxxxxxxxxxxxxxxxxxx",
-    encryptedSecret: ""   // will be filled after encryption
-  };
+function show(id) {
+document.getElementById(id).classList.remove('hidden');
 }
 
-export function lockWallet(wallet: Wallet, password: string): Wallet {
-  // TODO: encrypt wallet.secret with password (or biometric‑derived key)
-  return wallet;
+document.querySelectorAll('.expandable-section').forEach(section => {
+section.addEventListener('click', e => {
+if (e.target.closest('.section-title')) {
+section.classList.toggle('collapsed');
 }
+});
+});
 
-export function unlockWallet(wallet: Wallet, password: string): string {
-  // TODO: decrypt and return the secret key for signing
-  return "dummy-secret-key-for-testing";
-}
+

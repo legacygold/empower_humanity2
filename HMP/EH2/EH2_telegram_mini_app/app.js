@@ -189,8 +189,29 @@ function goHome() {
 }
 
 // ---------------------------------------------------
-// 6️⃣ TOP BAR HANDLERS
+// 6️⃣ TOP BAR & EMPOWERBOT INFO SCREENHANDLERS
 // ---------------------------------------------------
+async function loadWalletContent() {
+  try {
+  const resp = await fetch('src/wallet/wallet.html');
+  const html = await resp.text();
+
+  // Extract and inject CSS link
+  const linkMatch = html.match(/<link[^>]+rel="stylesheet"[^>]+>/);
+  if (linkMatch) {
+  const link = document.createElement('div');
+  link.innerHTML = linkMatch[0];
+  document.head.appendChild(link.firstChild);
+  }
+
+  /* Find the two sections inside wallet.html and inject them */
+  document.getElementById('connect-wallet').innerHTML = html.match(/<!-- ==== CONNECT WALLET SCREEN ==== -->[\s\S]*?<!-- ==== CONNECTED WALLETS SCREEN ==== -->/)[0];
+  document.getElementById('wallet').innerHTML = html.match(/<!-- ==== CONNECTED WALLETS SCREEN ==== -->[\s\S]*?<\/body>/)[0];
+  } catch (e) {
+  console.error('wallet.html not loaded', e);
+  }
+}
+
 function showProfile() {
   hideCurrentScreen();
   pushScreen({ containerId: 'profile', type: 'profile', previous: navStack[navIndex] });
@@ -393,7 +414,7 @@ async function loadSubmodule(parentKey, subKey) {
       <div class="sub-header" align="center">
         <h2>${sub.name}</h2>
         <p style="color:#e892f7;">${err.message}</p>
-        <button class="closeBtn" onclick="bindCloseButton()">← Close</button>
+        <button id="closeBtn" class="closeBtn">← Close</button>
       </div>`;
     console.error(err);
   }
@@ -493,4 +514,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   bindFooterItems();          // Footer items → openFooterContainer
   bindCloseButton();          // Close button on footer submodule screens
   bindComponentClicks();      // Component buttons inside submodules
+
+  // 5️⃣ Load wallet.html content into the appropriate containers
+  try {
+    document.getElementById('connectWalletBtn').addEventListener('click', () => {
+    showConnectWallet(); // Your existing function
+    });
+    document.getElementById('walletBtn').addEventListener('click', () => {
+    showWallet(); // Your existing function
+    });
+  } catch (e) {
+    console.error('wallet.html not loaded', e);
+  }
 });

@@ -230,11 +230,13 @@ button:hover {
   align-items: center;
   justify-content: center;
   margin-top: 0px;
+  accent-color:#531A91;
 }
 
 .profile-icon:hover {
-  box-shadow: 0 0 15px #531A91;
-  box-shadow: 0 0 30px #857535;
+  transform: scale(1.2);
+  border: 2px solid #531A91;
+  box-shadow: 0 0 60px #857535;
 }
 
 .wallet-icon {
@@ -305,4 +307,25 @@ button:hover {
   min-height: 100vh;
   box-sizing: border-box;
   padding: 1rem;
+}
+
+.expandable-section {
+border: 1px solid #ddd;
+border-radius: 6px;
+margin: 12px 0;
+}
+
+.expandable-section.collapsed {
+max-height: 0;
+overflow: hidden;
+}
+
+.expandable-section .section-title {
+margin: 0;
+font-size: 1.2rem;
+cursor: pointer;
+}
+
+.expandable-section .section-intro {
+margin-top: 8px;
 }

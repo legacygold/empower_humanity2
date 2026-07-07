@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0", maximum-scale=1.0, user-scalable=no>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Empower Humanity 2.0</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -24,9 +24,9 @@
   </div>
   <div class="column, right-align">
     <div><span>PTLX Balance: 200</span></div>
-    <button id="connectWalletBtn" alt="WalletConnect" class="button">Connect Wallet</button>
+    <button id="connectWalletBtn" alt="WalletConnect" class="button" onclick="loadWalletContent()">Connect Wallet</button>
     <button id="walletBtn">
-        <img src="assets/wallet-icon.png" alt="Wallet" class="wallet-icon">
+        <img src="assets/wallet-icon.png" alt="Wallet" class="wallet-icon" onclick="loadWalletContent()">
     </button>
   </div>
 </div>
@@ -94,35 +94,23 @@
 
 <!-- PROFILE SCREEN (will be hidden until shown) -->
 <div id="profile" class="body hidden">
-  <div class="header">Profile</div>
+  <div class="top-bar">Profile</div>
   <div class="content">
     <!-- Profile fields go here -->
   </div>
-  <div class="footer">
+  <div class="top-bar">
     <button class="backBtn" onclick="goBack()">← Back</button>
   </div>
 </div>
 
 <!-- CONNECT WALLET SCREEN -->
 <div id="connect-wallet" class="body hidden">
-  <div class="header">Connect Wallet</div>
-  <div class="content">
-    <!-- Wallet connection fields go here -->
-  </div>
-  <div class="footer">
-    <button class="backBtn" onclick="goBack()">← Back</button>
-  </div>
+  <div class="content"></div>
 </div>
 
 <!-- WALLET SCREEN -->
 <div id="wallet" class="body hidden">
-  <div class="header">Current Wallet(s)</div>
-  <div class="content">
-    <!-- Wallet balances and portfolio value fields go here -->
-  </div>
-  <div class="footer">
-    <button class="backBtn" onclick="goBack()">← Back</button>
-  </div>
+  <div class="content"></div>
 </div>
 
 <!-- EMPOWERBOT INFO SCREEN -->
@@ -149,7 +137,6 @@
   <div class="footer-item" data-menu="vault">PortalX Vault</div>
 </div>
 
-<script src="src/wallet.js"></script>
-<script src="app.js"></script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
