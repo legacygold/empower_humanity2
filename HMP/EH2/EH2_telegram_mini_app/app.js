@@ -526,4 +526,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (e) {
     console.error('wallet.html not loaded', e);
   }
+
+  // 6️⃣ Check if loadWalletContent is defined and call it
+  if (typeof loadWalletContent === 'function') {
+    await loadWalletContent();
+  } else {
+    console.warn('loadWalletContent is not defined');
+  }
 });

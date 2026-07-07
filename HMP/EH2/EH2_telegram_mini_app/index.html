@@ -138,5 +138,11 @@
 </div>
 
 <script type="module" src="app.js"></script>
+<script>
+// This runs after app.js defines loadWalletContent
+document.addEventListener('DOMContentLoaded', () => {
+loadWalletContent();
+});
+</script>
 </body>
 </html>
