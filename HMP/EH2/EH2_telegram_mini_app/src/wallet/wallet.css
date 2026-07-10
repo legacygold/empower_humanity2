@@ -12,22 +12,18 @@ body {
 
 .body.hidden { display:none; }
 
-#buttonWrapper {
-  background: #531A91;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 20px;
-  margin-left: 2.5px;
-  margin-right: 2.5px;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 0 10px #531A91;
+#stellarButtonWrapper {
+  padding: 20px;
 }
 
-#buttonWrapper:hover {
-  box-shadow: 0 0 20px #857535;
+#tonButtonWrapper {
+  padding: 20px;
 }
+
+stellar-wallets-kit-modal {
+        width: 100% !important;
+        height: 100% !important;
+      }
 
 #content-subtitle {
   font-size: 0.9rem;

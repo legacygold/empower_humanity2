@@ -24,9 +24,9 @@
   </div>
   <div class="column, right-align">
     <div><span>PTLX Balance: 200</span></div>
-    <button id="connectWalletBtn" alt="WalletConnect" class="button" onclick="loadWalletContent()">Connect Wallet</button>
+    <button id="connectWalletBtn" alt="WalletConnect" class="button">Connect Wallet</button>
     <button id="walletBtn">
-        <img src="assets/wallet-icon.png" alt="Wallet" class="wallet-icon" onclick="loadWalletContent()">
+        <img src="assets/wallet-icon.png" alt="Wallet" class="wallet-icon">
     </button>
   </div>
 </div>
@@ -78,6 +78,7 @@
     <div><img src="assets/EmpowerVerse_visual.jpg" alt="EmpowerVerse visual" class="module-visual"></div>
     <div class="carousel-module-buttons">
       <button class="moduleEnter">Enter</button>
+      
       <div><button class="empowerBotBtn">EmpowerBot</button></div>
       <img class="empowerBot-icon" src="assets/EmpowerBot_default_avatar.jpg" alt="EmpowerBot" class="empowerBot-icon" onclick="window.open('https://t.me/empower_testbot', '_blank')">
     </div>
@@ -138,11 +139,5 @@
 </div>
 
 <script type="module" src="app.js"></script>
-<script>
-// This runs after app.js defines loadWalletContent
-document.addEventListener('DOMContentLoaded', () => {
-loadWalletContent();
-});
-</script>
 </body>
 </html>

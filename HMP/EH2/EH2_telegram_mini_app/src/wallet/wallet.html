@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0", maximum-scale=1.0, user-scalable=no>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Wallet Handling</title>
   <link rel="stylesheet" href="src/wallet/wallet.css">
 </head>
@@ -89,7 +89,7 @@
         <p class="section-connect-stellar">
         Connect your Stellar wallet to access the decentralized finance layer.
         </p>
-        <div id="buttonWrapper"></div>
+        <div id="stellarButtonWrapper"></div>
         </div>
     </div>
     <div>
@@ -98,7 +98,7 @@
         <p class="section-connect-ton">
         Connect your TON DeFi Account wallet to access the decentralized finance layer.
         </p>
-        <button id="tonConnectBtn">Connect TON DeFi Account Wallet</button>
+        <div id="tonButtonWrapper"></div>
         </div>
     </div>   
 <div><button id="closeBtn" class="closeBtn">← Close</button></div>
@@ -111,8 +111,6 @@
 <div><button id="closeBtn" class="closeBtn">← Close</button></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/tonweb@0.3.0/dist/tonweb.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tonweb-wallets-kit@1.0.0/dist/tonweb-wallets-kit.min.js"></script>
 <script type="module" src="src/wallet/wallet.js"></script>
 </body>
 </html>

@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/portalx-lite-test/',   // VERY IMPORTANT
-  plugins: [ ]
+  base: '/empower_humanity2/',   // VERY IMPORTANT
+  plugins: [require('lit-plugin-html')] // Ensures proper template compilation
 })
 
 

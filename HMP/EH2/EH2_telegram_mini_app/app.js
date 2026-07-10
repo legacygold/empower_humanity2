@@ -2,6 +2,7 @@
 // EMBOLDENED HUMANITY 2.0 — APP.JS
 // ============================================================
 
+
 // ---------------------------------------------------
 // 1️⃣ INITIAL STATE & GLOBAL VARIABLES
 // ---------------------------------------------------
@@ -207,10 +208,20 @@ async function loadWalletContent() {
   /* Find the two sections inside wallet.html and inject them */
   document.getElementById('connect-wallet').innerHTML = html.match(/<!-- ==== CONNECT WALLET SCREEN ==== -->[\s\S]*?<!-- ==== CONNECTED WALLETS SCREEN ==== -->/)[0];
   document.getElementById('wallet').innerHTML = html.match(/<!-- ==== CONNECTED WALLETS SCREEN ==== -->[\s\S]*?<\/body>/)[0];
+  
+  const existing = document.getElementById('wallet-module-script');
+  if (existing) existing.remove();
+
+  const script = document.createElement('script');
+  script.type = 'module';
+  script.id = 'wallet-module-script';
+  script.src = `src/wallet/wallet.js?t=${Date.now()}`; // cache-bust so it re-runs
+  document.body.appendChild(script);
+
   } catch (e) {
   console.error('wallet.html not loaded', e);
   }
-}
+  }
 
 function showProfile() {
   hideCurrentScreen();
@@ -517,20 +528,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 5️⃣ Load wallet.html content into the appropriate containers
   try {
-    document.getElementById('connectWalletBtn').addEventListener('click', () => {
-    showConnectWallet(); // Your existing function
+    document.getElementById("connectWalletBtn").addEventListener("click", async () => {
+    await loadWalletContent(); // Injects wallet.html into its container(s)
+    showConnectWallet(); // Shows container via classList.remove('hidden')
     });
-    document.getElementById('walletBtn').addEventListener('click', () => {
-    showWallet(); // Your existing function
-    });
+
+    document.getElementById("walletBtn").addEventListener("click", async () => {
+    await loadWalletContent();
+    showWallet();
+  });
   } catch (e) {
     console.error('wallet.html not loaded', e);
   }
 
-  // 6️⃣ Check if loadWalletContent is defined and call it
-  if (typeof loadWalletContent === 'function') {
-    await loadWalletContent();
-  } else {
-    console.warn('loadWalletContent is not defined');
-  }
 });

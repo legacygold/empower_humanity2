@@ -22,54 +22,32 @@ url: "https://legacygold.github.io/empower_humanity2/",
 ],
 });
 
-// 2️⃣ Define buttons
-const buttonWrapper = document.querySelector("#buttonWrapper");
-StellarWalletsKit.createButton(buttonWrapper);
-
-// 3️⃣ Wire Stellar WalletConnect
-buttonWrapper.addEventListener("click", async () =>  {
-try {
-// Show wallet selector
-const { address } = await StellarWalletsKit.authModal(); // Requires setup below
-console.log('Connected Stellar address:', address);
-alert('Connected wallet:\\n' + address);
-// TODO: Save address and update UI
-} catch (err) {
-console.error('Stellar connect failed:', err);
-}
+// Export a function to render the button AFTER HTML exists
+function renderWalletConnectButton() {
+const wrapper = document.getElementById('stellarButtonWrapper');
+if (wrapper) {
+StellarWalletsKit.createButton(wrapper, {
+children: "Connect Stellar Wallet"
 });
+}
+}
 
 /* ---------------- TON CONNECT (placeholder) ---------------- */
-function connectTONwallet() {
+function renderTonConnectButton() {
+const wrapper = document.getElementById('tonButtonWrapper');
+if (wrapper) {
+const button = document.createElement('button');
+button.textContent = "Connect TON Wallet";
+wrapper.appendChild(button);
 // TODO: add TON Connect library integration here
 console.log('TON Connect not yet implemented');
 }
-
-// Show "Connected Wallets"
-document.getElementById('openConnectedWallets').onclick = () => {
-hideAll();
-show('connected-wallets-screen');
-renderConnectedWallets(); // pull from stored data
-};
-
-// Placeholdr for "Wallet(s) Dashboard" UI logic
-function showTONwallet() {} // Will show connected TON wallet (s) and allow users to manage them (e.g. view balance, transaction history, etc.)
-function showStellarWallet() {} // Will show connected Stellar wallet (s) and allow users to manage them (e.g. view balance, transaction history, etc.)
-
-function hideAll() {
-document.querySelectorAll('.body.hidden').forEach(el => el.classList.add('hidden'));
 }
 
-function show(id) {
-document.getElementById(id).classList.remove('hidden');
-}
+renderWalletConnectButton(); // Renders Stellar Wallet Connect button
+renderTonConnectButton(); // Renders TON Connect button (placeholder)
 
-document.querySelectorAll('.expandable-section').forEach(section => {
-section.addEventListener('click', e => {
-if (e.target.closest('.section-title')) {
-section.classList.toggle('collapsed');
-}
-});
-});
+
+
 
 
