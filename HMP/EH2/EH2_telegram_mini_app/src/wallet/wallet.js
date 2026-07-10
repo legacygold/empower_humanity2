@@ -16,7 +16,7 @@ metadata: {
 name: "Empower Humanity 2.0 Wallet Management",
 description: "Connect wallet for EH 2.0",
 icons: ["https://legacygold.github.io/empower_humanity2/HMP/EH2/EH2_telegram_mini_app/assets/logo.JPG"],
-url: "https://legacygold.github.io/empower_humanity2/HMP/EH2/EH2_telegram_mini_app/index.html",
+url: "https://legacygold.github.io/empower_humanity2/",
 },
 }),
 ],
