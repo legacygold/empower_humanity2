@@ -68,8 +68,19 @@ body {
 }
 
 /* Dynamic Content Holders */
-#tier-resonance, #ptlxBalance {
+#tier-resonance, #ptlx-balance {
   flex: 1; /* Allow dynamic text width */
+}
+
+.ptlx-top-bar-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(120, 60, 160, 0.25);
+  border: 1px solid #531A91;
+  border-radius: 24px;
+  padding: 5px 10px;
+  margin: 0 auto;
 }
 
 .card {
