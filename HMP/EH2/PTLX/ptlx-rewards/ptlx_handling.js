@@ -20,6 +20,7 @@ const TODAY = new Date().toISOString().slice(0, 10); // YYYY‑MM‑DD
 
 /* ==== TELEGRAM INTEGRATION ==== */
 const tg = window.Telegram.WebApp;
+tg.ready(); // Ensure Telegram WebApp is ready
 const isTelegram = !!tg;
 const userId = tg.initDataUnsafe?.user?.id; // Telegram user ID
 const LOCAL_KEY = `ptlx_${userId}`; // localStorage key for current user
@@ -27,7 +28,7 @@ const LOCAL_KEY = `ptlx_${userId}`; // localStorage key for current user
 /* ---- TEMP DEBUG: show userId on screen ---- */
 (function showDebug() {
 const box = document.createElement('div');
-box.userId = 'debug-userid';
+box.id = 'debug-userid';
 box.style.cssText = 'position:fixed;bottom:0;left:0;background:#e00;color:#fff;'
 + 'padding:6px 10px;font-size:14px;z-index:99999;'
 + 'font-family:monospace;';
