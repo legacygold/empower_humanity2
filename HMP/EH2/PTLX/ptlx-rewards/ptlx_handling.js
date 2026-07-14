@@ -24,22 +24,28 @@ return null;
 }
 
 let userId = getUserId();
+const connected = !!userId;
+if (userId) localStorage.setItem('ptlx_user_id', userId);
+
+/* placeholder balance */
+const balEl = document.getElementById('ptlx-balance');
+if (balEl && !connected) balEl.textContent = '0';
 
 function showConnectButton() {
-if (tg?.MainButton) {
+if (!tg) return;
+if (tg.initDataUnsafe?.query_id) {
+// launched from an inline button → safe to use sendData
 tg.MainButton.text = '🔗 Connect Account';
 tg.MainButton.show();
-tg.MainButton.onClick(() => { tg.sendData('CONNECT_USER'); tg.MainButton.hide(); });
+tg.MainButton.onClick(() => tg.sendData('CONNECT_USER'));
 } else {
-const btn = document.createElement('button');
-btn.textContent = '🔗 Connect Account';
-btn.onclick = () => alert('In Telegram this calls tg.sendData("CONNECT_USER")');
-document.body.appendChild(btn);
+// launched from menu/direct link → open bot with /start connect
+tg.MainButton.text = '🔗 Connect Account';
+tg.MainButton.show();
+tg.MainButton.onClick(() => tg.openTelegramLink('https://t.me/empower_testbot?start=connect'));
 }
 }
-
-if (!userId) { showConnectButton(); return; }
-localStorage.setItem('ptlx_user_id', userId);
+if (!connected) showConnectButton();
 
 /* ---- 2. Storage helpers ---- */
 const storage = {
@@ -61,27 +67,42 @@ async function getBalance() {
 const v = await storage.getItem(BAL_KEY);
 return v ? parseInt(v, 10) : 0;
 }
+
 async function setBalance(b) { await storage.setItem(BAL_KEY, String(b)); }
 
 function updateBalance() {
 getBalance().then(b => {
-const el = document.getElementById('ptlx-balance');
-if (el) el.textContent = b;
+document.querySelectorAll('#ptlx-balance').forEach(el => el.textContent = b);
 });
 }
 
 /* ---- 3. Public API ---- */
-window.addPTLX = async (amt) => { const b = await getBalance(); await setBalance(b + amt); updateBalance(); };
-window.redeemPTLX = async (amt) => { const b = await getBalance(); await setBalance(Math.max(0, b - amt)); updateBalance(); };
+window.addPTLX = async (amt) => { 
+if (!userId) { alert('Connect your account first'); return; }
+const b = await getBalance(); await setBalance(b + amt); 
+updateBalance(); 
+};
+
+window.redeemPTLX = async (amt) => {
+if (!userId) { alert('Connect your account first'); return; } 
+const b = await getBalance(); await setBalance(Math.max(0, b - amt)); 
+updateBalance(); 
+};
+
 window.giftPTLX = async (toId, amt) => {
+if (!userId) { alert('Connect your account first'); return; }
 const from = parseInt(await storage.getItem(`ptlx_${userId}`) || '0', 10);
 await setBalance(Math.max(0, from - amt));
 const to = parseInt(await storage.getItem(`ptlx_${toId}`) || '0', 10);
 await storage.setItem(`ptlx_${toId}`, String(to + amt));
 updateBalance();
 };
+
 window.adminAddPTLX = async (targetId, amt) => {
-if (isTG && tg.initDataUnsafe?.user?.id !== 525612398) { console.error('Unauthorized'); return; }
+if (!userId) { alert('Connect your account first'); return; }
+if (String(userId) !== '525612398') {
+const taBtn = document.getElementById('ta-btn');
+if (taBtn) taBtn.style.display = 'none';}
 const cur = parseInt(await storage.getItem(`ptlx_${targetId}`) || '0', 10);
 await storage.setItem(`ptlx_${targetId}`, String(cur + amt));
 updateBalance();
