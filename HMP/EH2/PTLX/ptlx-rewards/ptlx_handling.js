@@ -24,6 +24,19 @@ const isTelegram = !!tg;
 const userId = tg?.initDataUnsafe?.user?.id; // Telegram user ID
 const LOCAL_KEY = `ptlx_${userId}`; // localStorage key for current user
 
+/* ---- TEMP DEBUG: show userId on screen ---- */
+(function showDebug() {
+const box = document.createElement('div');
+box.id = 'debug-userid';
+box.style.cssText = 'position:fixed;bottom:0;left:0;background:#e00;color:#fff;'
++ 'padding:6px 10px;font-size:14px;z-index:99999;'
++ 'font-family:monospace;';
+box.textContent = 'DEBUG userId = ' + (userId || 'undefined');
+// Wait for <body> to exist, then append
+(document.body || document.documentElement).appendChild(box);
+})();
+
+
 /* ==== PERSISTENCE HELPERS ==== */
 async function getBalance() {
 if (isTelegram) {
@@ -151,15 +164,19 @@ uiEl.textContent = await getBalanceForUser(toUserId); // show the recipient side
 };
 
 /* ==== ADMIN OVERRIDE (only Debi) ==== */
-window.adminAddPTLX = async function (targetUserId, amount) {
-// Only Debi (525612398) may use adminAddPTLX
-if (tg?.initDataUnsafe?.user?.id !== 525612398) {
-console.error('Unauthorized admin call – only Debi may admin grant PTLX.');
+/* ---- top‑level (no IIFE) ---- */
+window.adminAddPTLX = async function(targetUserId, amount) {
+if (!window.Telegram?.initDataUnsafe?.user?.id || window.Telegram.initDataUnsafe.user.id !== 525612398) {
+console.error('Unauthorized – only Debi (525612398) may call adminAddPTLX');
 return;
 }
-const current = await getBalanceForUser(targetUserId);
-await setBalanceForUser(targetUserId, current + amount);
-updateBalanceDisplayForUser(targetUserId, await getBalanceForUser(targetUserId));
+const key = `ptlx_${targetUserId}`;
+const cur = parseInt(await window.ptlxStorage.getItem(key) || '0', 10);
+const newBal = cur + amount;
+await window.ptlxStorage.setItem(key, String(newBal));
+// update the UI element (the balance span)
+const el = document.getElementById('ptlx-balance');
+if (el) el.textContent = String(newBal);
 };
 
 /* ==== EARNING LOGIC (chat / tutorial) ==== */
