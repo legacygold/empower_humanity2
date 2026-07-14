@@ -19,9 +19,9 @@ const TUTORIAL_PTLX = 10; // PTLX per tutorial
 const TODAY = new Date().toISOString().slice(0, 10); // YYYY‑MM‑DD
 
 /* ==== TELEGRAM INTEGRATION ==== */
-const tg = window.Telegram?.WebApp;
+const tg = window.Telegram.WebApp;
 const isTelegram = !!tg;
-const userId = tg?.initDataUnsafe?.user?.id; // Telegram user ID
+const userId = tg.initDataUnsafe.user.id; // Telegram user ID
 const LOCAL_KEY = `ptlx_${userId}`; // localStorage key for current user
 
 /* ---- TEMP DEBUG: show userId on screen ---- */
