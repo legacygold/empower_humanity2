@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Earn PTLX</title>
-  
 </head>
 <div id="footer-sub" class="earn-module" style="width: 100%; padding: 1rem; box-sizing: border-box;">
 <body>
@@ -38,8 +37,22 @@
   </div>
   <div class="earn-card" style="margin-bottom: 20px; text-align: center;">
     <span class="desc">Earn 1 PTLX per 1 USDC donated</span>
-    <br><button class="earn-btn" style="margin-bottom: 5px">Donate to the LGLWM</button>
+    <br><button class="earn-btn" style="margin-bottom: 5px" onclick="addPTLX(10)">Donate to the LGLWM</button>
     <br><button class="earn-btn" style="margin-bottom: 10px" data-component="fundexit">Support a FunDEXit Project</button>   
+  </div>
+  <!-- NEW TA Button (Admin only) -->
+  <button id="ta-btn" class="earn-btn" style="margin-bottom: 5px;" onclick="document.getElementById('ta-modal').style.display='block'">Admin: Add PTLX</button>
+  </div>
+
+  <!-- Admin Modal -->
+  <div id="ta-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; padding:20px; border-radius:8px; z-index:999; box-shadow:0 4px 12px rgba(0,0,0,.15);">
+  <h3>Admin PTLX Grant</h3>
+  <form id="ta-form">
+  <label>Donor User ID:<br><input type="text" id="ta-userid" placeholder="525612398"></label><br><br>
+  <label>PTLX Amount:<br><input type="number" id="ta-amount" min="1" placeholder="1"></label><br><br>
+  <button type="submit" onclick="adminAddPTLX(document.getElementById('ta-userid').value, parseInt(document.getElementById('ta-amount').value || '0', 10))">Grant</button>
+  </form>
+  <button onclick="document.getElementById('ta-modal').style.display='none'" style="margin-top:10px;">Cancel</button>
   </div>
 </div>
 </body>
@@ -49,3 +62,4 @@
     <br><button id="backBtn" class="backBtn">← Back</button>
 </div>
 <script type="module" src="earn.js"></script>
+

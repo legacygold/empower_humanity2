@@ -1,0 +1,51 @@
+/* ptlx_handling.js – PTLX Balance via Telegram CloudStorage */
+(function () {
+'use strict';
+
+const STORAGE_KEY = 'ptlx_balance';
+const tg = window.Telegram?.WebApp;
+const cloud = tg?.CloudStorage;
+
+// Fallback for local testing without Telegram
+const isTelegram = !!cloud;
+const LOCAL_KEY = `ptlx_local_${tg?.initDataUnsafe?.user?.id || 'test'}`;
+
+async function getBalance() {
+if (isTelegram) {
+return new Promise((resolve) => {
+cloud.getItem(STORAGE_KEY, (err, value) => {
+resolve(err || !value ? 0 : parseInt(value, 10));
+});
+});
+}
+return parseInt(localStorage.getItem(LOCAL_KEY) || '0', 10);
+}
+
+async function setBalance(balance) {
+if (isTelegram) {
+return new Promise((resolve) => {
+cloud.setItem(STORAGE_KEY, String(balance), (err) => {
+if (!err) resolve();
+});
+});
+}
+localStorage.setItem(LOCAL_KEY, String(balance));
+}
+
+function updateDisplay(bal) {
+const el = document.getElementById('ptlx-balance');
+if (el) el.textContent = bal;
+}
+
+window.addPTLX = async function (amount) {
+if (typeof amount !== 'number' || isNaN(amount)) return;
+const current = await getBalance();
+const newBal = current + amount;
+await setBalance(newBal);
+updateDisplay(newBal);
+};
+
+document.addEventListener('DOMContentLoaded', async () => {
+updateDisplay(await getBalance());
+});
+})();
