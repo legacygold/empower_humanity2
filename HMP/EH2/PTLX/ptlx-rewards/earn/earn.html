@@ -44,15 +44,17 @@
   <button id="ta-btn" class="earn-btn" style="margin-bottom: 5px;" onclick="document.getElementById('ta-modal').style.display='block'">Admin: Add PTLX</button>
   </div>
 
-  <!-- Admin Modal -->
-  <div id="ta-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; padding:20px; border-radius:8px; z-index:999; box-shadow:0 4px 12px rgba(0,0,0,.15);">
+  <!-- Admin modal (no <form> wrapper) -->
+  <div id="ta-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; padding:20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.2); z-index:1000;">
   <h3>Admin PTLX Grant</h3>
-  <form id="ta-form">
   <label>Donor User ID:<br><input type="text" id="ta-userid" placeholder="525612398"></label><br><br>
-  <label>PTLX Amount:<br><input type="number" id="ta-amount" min="1" placeholder="1"></label><br><br>
-  <button type="submit" onclick="adminAddPTLX(document.getElementById('ta-userid').value, parseInt(document.getElementById('ta-amount').value || '0', 10))">Grant</button>
-  </form>
-  <button onclick="document.getElementById('ta-modal').style.display='none'" style="margin-top:10px;">Cancel</button>
+  <label>PTLX Amount:<br><input type="number" id="ta-amount" min="1" placeholder="10"></label><br><br>
+  <button type="button"
+  onclick="adminAddPTLX(document.getElementById('ta-userid').value, parseInt(document.getElementById('ta-amount').value || '0', 10)); document.getElementById('ta-modal').style.display='none';">
+  Grant
+  </button>
+  <br><br>
+  <button type="button" onclick="document.getElementById('ta-modal').style.display='none'">Cancel</button>
   </div>
 </div>
 </body>
