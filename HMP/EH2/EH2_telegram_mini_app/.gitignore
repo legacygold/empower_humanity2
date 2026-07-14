@@ -17,3 +17,8 @@ yarn-debug.log*
 
 # VS Code
 .vscode/
+
+# Untrack files
+header\micro-connect-wallet.md
+header/micro-profile.md
+header\micro-wallet-balances.md
