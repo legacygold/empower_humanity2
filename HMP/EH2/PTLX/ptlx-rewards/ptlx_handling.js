@@ -1,32 +1,56 @@
 /* ptlx_handling.js – PTLX Balance Manager
-* Reverts to simple, stable localStorage-only storage
-* No Telegram CloudStorage (avoids errors)
+* Acts like localStorage but uses Telegram CloudStorage
 * No sendData handshake (avoids promise errors)
 */
 
 (function() {
 'use strict';
 
+// Catch silent errors in async event handlers
+window.addEventListener('unhandledrejection', event => {
+    console.error('⚠️ UNHANDLED PROMISE REJECTION:', event.reason);
+    alert('Error: ' + event.reason); // Force an alert so you see it
+});
+
+window.addEventListener('error', event => {
+    console.error('⚠️ GLOBAL ERROR:', event.message, event.filename, event.lineno);
+    alert('Script Error: ' + event.message);
+});
+
 //Resonance threshold check
 const userResonance = navigator.getBattery ? 7.35 : 0; // Placeholder 
 if (userResonance > 7.35) { enableCloudSync() }
 
-// Storage helpers (Hybrid: CloudStorage in Telegram, localStorage in browser)
-const tg = window.Telegram?.WebApp;
-const isTG = !!tg && !!tg.CloudStorage;
+// 1. Ensure Telegram is Ready
+const tg = window.Telegram.WebApp;
+if (tg) tg.ready();
 
-// Async wrapper that acts like localStorage but uses Telegram CloudStorage
+// 2. Simplified Wrapper
 const TelegramStorage = {
     getItem: async (key) => {
-        if (!window.Telegram?.WebApp) return localStorage.getItem(key);
-        return await window.Telegram.WebApp.CloudStorage.getItem(key);
-    },
-    setItem: async (key, value) => {
-        if (!window.Telegram?.WebApp) {
-            localStorage.setItem(key, value);
-            return;
+        // If inside Telegram and CloudStorage exists
+        if (tg && tg.CloudStorage) {
+            try {
+                return await tg.CloudStorage.getItem(key);
+            } catch (e) {
+                console.error("CloudStorage getItem error:", e);
+                return null; // Return null on error to prevent NaN
+            }
         }
-        await window.Telegram.WebApp.CloudStorage.setItem(key, value);
+        // Fallback (should not happen in Telegram if init worked)
+        return localStorage.getItem(key);
+    },
+    
+    setItem: async (key, value) => {
+        if (tg && tg.CloudStorage) {
+            try {
+                await tg.CloudStorage.setItem(key, value);
+            } catch (e) {
+                console.error("CloudStorage setItem error:", e);
+            }
+        } else {
+            localStorage.setItem(key, value);
+        }
     }
 };
 
@@ -119,31 +143,34 @@ async function init() {
 // Public API
 window.addPTLX = async (amt) => {
   if (!userId) { alert('Connect your account first'); return; }
+  const amount = parseInt(amt, 10); // Ensure number
   const b = await getBalance();
-  await setBalance(b + amt);
+  await setBalance(b + amount);
   updateBalance();
 };
 
 window.redeemPTLX = async (amt) => {
   if (!userId) { alert('Connect your account first'); return; }
+  const amount = parseInt(amt, 10); // Ensure number
   const b = await getBalance();
-  if (amt > b) { alert(`Insufficient balance! You have ${b} PTLX.`); return; }
-  await setBalance(b - amt);
+  if (amount > b) { alert(`Insufficient balance! You have ${b} PTLX.`); return; }
+  await setBalance(b - amount);
   updateBalance();
 };
 
 window.giftPTLX = async (toId, amt) => {
   if (!userId) { alert('Connect your account first'); return; }
   const fromBal = await getBalance();
-  if (amt > fromBal) { alert(`Insufficient balance! You have ${fromBal} PTLX.`); return; }
+  const amount = parseInt(amt, 10); // Ensure number
+  if (amount > fromBal) { alert(`Insufficient balance! You have ${fromBal} PTLX.`); return; }
   
   // Deduct from sender
-  await setBalance(fromBal - amt);
+  await setBalance(fromBal - amount);
   
   // Add to recipient
   const toBalKey = `ptlx_${toId}`;
   const toBal = parseInt((await TelegramStorage.getItem(toBalKey)) || '0', 10);
-  await TelegramStorage.setItem(toBalKey, String(toBal + amt));
+  await TelegramStorage.setItem(toBalKey, String(toBal + amount));
   
   updateBalance();
 };
@@ -154,9 +181,11 @@ window.adminAddPTLX = async (targetId, amt) => {
     alert('Admin function restricted to creator only');
     return;
   }
+
+  const amount = parseInt(amt, 10); // Ensure number
   
   const cur = parseInt((await TelegramStorage.getItem(`ptlx_${targetId}`)) || '0', 10);
-  await TelegramStorage.setItem(`ptlx_${targetId}`, String(cur + amt));
+  await TelegramStorage.setItem(`ptlx_${targetId}`, String(cur + amount));
   updateBalance();
 };
 
