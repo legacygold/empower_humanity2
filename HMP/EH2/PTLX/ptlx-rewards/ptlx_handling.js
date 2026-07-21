@@ -11,8 +11,9 @@
 const userResonance = navigator.getBattery ? 7.35 : 0; // Placeholder 
 if (userResonance > 7.35) { enableCloudSync() }
 
+// Storage helpers (Hybrid: CloudStorage in Telegram, localStorage in browser)
 const tg = window.Telegram?.WebApp;
-const isTG = !!tg;
+const isTG = !!tg && !!tg.CloudStorage;
 
 // Async wrapper that acts like localStorage but uses Telegram CloudStorage
 const TelegramStorage = {
@@ -52,10 +53,6 @@ if (newId && !isConnected) {
 setConnectionState(true, newId); // store, update UI, refresh balance
 }
 });
-
-// Storage helpers (Hybrid: CloudStorage in Telegram, localStorage in browser)
-const tg = window.Telegram?.WebApp;
-const isTG = !!tg && !!tg.CloudStorage;
 
 const storage = {
   getItem: async (key) => {
