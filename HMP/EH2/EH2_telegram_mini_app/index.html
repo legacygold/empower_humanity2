@@ -47,34 +47,6 @@
     </div>
   <div id="app" class="card">
   <h3>User ID: <span id="user-id">Loading...</span></h3>
-    <script>
-        // 2. Initialize the WebApp
-        const tg = window.Telegram.WebApp;
-
-        // 3. Wait for the app to be ready
-        tg.ready();
-        tg.expand(); // Optional: Expands the app to full height
-
-        // 4. Retrieve the User ID
-        // Check if initDataUnsafe exists (it might be empty if opened incorrectly)
-        if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
-            const userId = tg.initDataUnsafe.user.id;
-            const firstName = tg.initDataUnsafe.user.first_name;
-            
-            // Display the ID
-            document.getElementById('user-id').innerText = userId;
-            
-            // 5. (Critical) Send this ID to your backend for validation
-            // Do not trust this value blindly for payments/security without validation
-            console.log("User ID:", userId);
-            
-            // Example: Send to your backend
-            // fetch('/api/login', { method: 'POST', body: JSON.stringify({ initData: tg.initData }) });
-        } else {
-            document.getElementById('user-id').innerText = "Error: No User Data (Open via Bot Menu)";
-            console.error("initData is missing. Ensure you opened this via the Bot's Menu Button or an Inline Web App button.");
-        }
-    </script>
   </div>
 </div>
 
@@ -175,5 +147,33 @@
 
 <script type="module" src="app.js"></script>
 <script src="../PTLX/ptlx-rewards/ptlx_handling.js"></script>
+<script>
+    // 2. Initialize the WebApp
+    const tg = window.Telegram.WebApp;
+
+    // 3. Wait for the app to be ready
+    tg.ready();
+    tg.expand(); // Optional: Expands the app to full height
+
+    // 4. Retrieve the User ID
+    // Check if initDataUnsafe exists (it might be empty if opened incorrectly)
+    if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+        const userId = tg.initDataUnsafe.user.id;
+        const firstName = tg.initDataUnsafe.user.first_name;
+        
+        // Display the ID
+        document.getElementById('user-id').innerText = userId;
+        
+        // 5. (Critical) Send this ID to your backend for validation
+        // Do not trust this value blindly for payments/security without validation
+        console.log("User ID:", userId);
+        
+        // Example: Send to your backend
+        // fetch('/api/login', { method: 'POST', body: JSON.stringify({ initData: tg.initData }) });
+    } else {
+        document.getElementById('user-id').innerText = "Error: No User Data (Open via Bot Menu)";
+        console.error("initData is missing. Ensure you opened this via the Bot's Menu Button or an Inline Web App button.");
+    }
+</script>
 </body>
 </html>
