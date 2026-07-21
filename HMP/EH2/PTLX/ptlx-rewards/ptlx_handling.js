@@ -7,7 +7,8 @@
 (function() {
 'use strict';
 
-//Resonance threshold check 
+//Resonance threshold check
+const userResonance = navigator.getBattery ? 7.35 : 0; // Placeholder 
 if (userResonance > 7.35) { enableCloudSync() }
 
 const tg = window.Telegram?.WebApp;
