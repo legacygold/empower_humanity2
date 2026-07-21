@@ -35,57 +35,43 @@ let userId = null;
 let isConnected = false;
 
 // Resolve userId from multiple sources
-function resolveUserId() {
-// 1️⃣ First check URL param (auto‑added by deep link)
-const urlUser = new URLSearchParams(window.location.search).get('user_id');
-if (urlUser) return urlUser;
+// Uses TelegramStorage wrapper
+async function resolveUserId() {
+  // 1️⃣ First check URL param (sync)
+  const urlUser = new URLSearchParams(window.location.search).get('user_id');
+  if (urlUser) return urlUser;
 
-// 2️⃣ Then check initData (inline launch)
-if (tg?.initDataUnsafe?.user?.id) return tg.initDataUnsafe.user.id;
+  // 2️⃣ Then check initData (sync)
+  if (tg?.initDataUnsafe?.user?.id) {
+    const id = tg.initDataUnsafe.user.id;
+    // Save to cloud/local for future (fire-and-forget)
+    TelegramStorage.setItem('ptlx_user_id', id).catch(console.error); 
+    return id;
+  }
 
-// 3. Fall back to persisted ID
-return localStorage.getItem('ptlx_user_id') || null;
+  // 3️⃣ Fall back to persisted ID (ASYNC - MUST await)
+  // Uses your wrapper which handles CloudStorage vs localStorage automatically
+  const storedId = await TelegramStorage.getItem('ptlx_user_id');
+  return storedId || null;
 }
 
 tg.onEvent('web_app_data', async (e) => {
-const newId = resolveUserId(); // ← will now be populated by deep link
+const newId = await resolveUserId(); // ← will now be populated by deep link
 if (newId && !isConnected) {
 setConnectionState(true, newId); // store, update UI, refresh balance
 }
 });
 
-const storage = {
-  getItem: async (key) => {
-    if (isTG) {
-      // Use Telegram CloudStorage (Returns a Promise)
-      return await tg.CloudStorage.getItem(key);
-    } else {
-      // Fallback to localStorage (Wrapped in Promise to match your existing code)
-      return Promise.resolve(localStorage.getItem(key));
-    }
-  },
-  setItem: async (key, val) => {
-    if (isTG) {
-      // Use Telegram CloudStorage (Returns a Promise)
-      await tg.CloudStorage.setItem(key, val);
-    } else {
-      // Fallback to localStorage
-      localStorage.setItem(key, val);
-      return Promise.resolve();
-    }
-  }
-};
-
 // Balance management
 async function getBalance() {
   if (!userId) return 0;
-  const v = await storage.getItem(`ptlx_${userId}`);
+  const v = await TelegramStorage.getItem(`ptlx_${userId}`);
   return v ? parseInt(v, 10) : 0;
 }
 
 async function setBalance(b) {
   if (!userId) return;
-  await storage.setItem(`ptlx_${userId}`, String(b));
+  await TelegramStorage.setItem(`ptlx_${userId}`, String(b));
 }
 
 function updateBalance() {
@@ -115,7 +101,7 @@ async function init() {
   if (userId) {
     // 2. Save to CloudStorage (via your hybrid helper) instead of direct localStorage
     // This ensures it syncs across devices if in Telegram
-    await storage.setItem('ptlx_user_id', userId);
+    await TelegramStorage.setItem('ptlx_user_id', userId);
   }
   
   // 3. Update balance display (ensure updateBalance is also ready to handle async if it reads storage)
@@ -156,8 +142,8 @@ window.giftPTLX = async (toId, amt) => {
   
   // Add to recipient
   const toBalKey = `ptlx_${toId}`;
-  const toBal = parseInt((await storage.getItem(toBalKey)) || '0', 10);
-  await storage.setItem(toBalKey, String(toBal + amt));
+  const toBal = parseInt((await TelegramStorage.getItem(toBalKey)) || '0', 10);
+  await TelegramStorage.setItem(toBalKey, String(toBal + amt));
   
   updateBalance();
 };
@@ -169,8 +155,8 @@ window.adminAddPTLX = async (targetId, amt) => {
     return;
   }
   
-  const cur = parseInt((await storage.getItem(`ptlx_${targetId}`)) || '0', 10);
-  await storage.setItem(`ptlx_${targetId}`, String(cur + amt));
+  const cur = parseInt((await TelegramStorage.getItem(`ptlx_${targetId}`)) || '0', 10);
+  await TelegramStorage.setItem(`ptlx_${targetId}`, String(cur + amt));
   updateBalance();
 };
 
@@ -178,13 +164,13 @@ window.adminAddPTLX = async (targetId, amt) => {
 const MAX_CHAT = 10, MAX_TUT = 3;
 
 async function getDaily(key) {
-  const v = await storage.getItem(key);
+  const v = await TelegramStorage.getItem(key);
   return v ? parseInt(v, 10) : 0;
 }
 
 async function incDaily(key) {
   const c = await getDaily(key);
-  await storage.setItem(key, String(c + 1));
+  await TelegramStorage.setItem(key, String(c + 1));
 }
 
 window.processChatMessage = async () => {
