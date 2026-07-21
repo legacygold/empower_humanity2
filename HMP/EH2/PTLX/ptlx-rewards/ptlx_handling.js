@@ -14,6 +14,21 @@ if (userResonance > 7.35) { enableCloudSync() }
 const tg = window.Telegram?.WebApp;
 const isTG = !!tg;
 
+// Async wrapper that acts like localStorage but uses Telegram CloudStorage
+const TelegramStorage = {
+    getItem: async (key) => {
+        if (!window.Telegram?.WebApp) return localStorage.getItem(key);
+        return await window.Telegram.WebApp.CloudStorage.getItem(key);
+    },
+    setItem: async (key, value) => {
+        if (!window.Telegram?.WebApp) {
+            localStorage.setItem(key, value);
+            return;
+        }
+        await window.Telegram.WebApp.CloudStorage.setItem(key, value);
+    }
+};
+
 // Connection state
 let userId = null;
 let isConnected = false;
@@ -38,12 +53,29 @@ setConnectionState(true, newId); // store, update UI, refresh balance
 }
 });
 
-// Storage helpers (localStorage only – no CloudStorage)
+// Storage helpers (Hybrid: CloudStorage in Telegram, localStorage in browser)
+const tg = window.Telegram?.WebApp;
+const isTG = !!tg && !!tg.CloudStorage;
+
 const storage = {
-  getItem: (key) => Promise.resolve(localStorage.getItem(key)),
-  setItem: (key, val) => {
-    localStorage.setItem(key, val);
-    return Promise.resolve();
+  getItem: async (key) => {
+    if (isTG) {
+      // Use Telegram CloudStorage (Returns a Promise)
+      return await tg.CloudStorage.getItem(key);
+    } else {
+      // Fallback to localStorage (Wrapped in Promise to match your existing code)
+      return Promise.resolve(localStorage.getItem(key));
+    }
+  },
+  setItem: async (key, val) => {
+    if (isTG) {
+      // Use Telegram CloudStorage (Returns a Promise)
+      await tg.CloudStorage.setItem(key, val);
+    } else {
+      // Fallback to localStorage
+      localStorage.setItem(key, val);
+      return Promise.resolve();
+    }
   }
 };
 
@@ -78,22 +110,28 @@ function showConnectButton() {
 }
 
 // Initialize
-function init() {
-  userId = resolveUserId();
+async function init() {
+  // 1. Await the Promise to get the actual ID string
+  userId = await resolveUserId();
   isConnected = !!userId;
   
   if (userId) {
-    localStorage.setItem('ptlx_user_id', userId);
+    // 2. Save to CloudStorage (via your hybrid helper) instead of direct localStorage
+    // This ensures it syncs across devices if in Telegram
+    await storage.setItem('ptlx_user_id', userId);
   }
   
-  // Update balance display
+  // 3. Update balance display (ensure updateBalance is also ready to handle async if it reads storage)
   updateBalance();
   
-  // Show connect button if not connected
+  // 4. Show connect button if not connected
   if (!isConnected && tg) {
     showConnectButton();
   }
 }
+
+// IMPORTANT: You must call init() with await or .then() wherever it is invoked
+// Example: init(); -> await init(); (if inside another async function)
 
 // Public API
 window.addPTLX = async (amt) => {
@@ -173,8 +211,22 @@ setInterval(updateBalance, 3000);
 
 // Run init when DOM ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
+  document.addEventListener('DOMContentLoaded', () => {
+    (async () => {
+      try {
+        await init();
+      } catch (error) {
+        console.error("Initialization failed:", error);
+      }
+    })();
+  });
 } else {
-  init();
+  (async () => {
+    try {
+      await init();
+    } catch (error) {
+      console.error("Initialization failed:", error);
+    }
+  })();
 }
 })();
