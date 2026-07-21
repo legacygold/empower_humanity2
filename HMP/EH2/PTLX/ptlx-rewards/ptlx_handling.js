@@ -7,6 +7,9 @@
 (function() {
 'use strict';
 
+//Resonance threshold check 
+if (userResonance > 7.35) { enableCloudSync() }
+
 const tg = window.Telegram?.WebApp;
 const isTG = !!tg;
 
