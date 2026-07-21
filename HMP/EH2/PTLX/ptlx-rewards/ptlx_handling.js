@@ -50,11 +50,12 @@ if (!connected) showConnectButton();
 /* ---- 2. Storage helpers ---- */
 const storage = {
 async getItem(key) {
-if (isTG) return new Promise(r => tg.CloudStorage.getItem(key, (_, v) => r(v)));
+// Fallback to localStorage when Telegram CloudStorage is unavailable
+console.log('[PTLX] Using localStorage (CloudStorage unsupported)');
 return Promise.resolve(localStorage.getItem(key));
 },
 async setItem(key, val) {
-if (isTG) return new Promise(r => tg.CloudStorage.setItem(key, val, (_, s) => r(s)));
+console.log('[PTLX] Storing via localStorage');
 localStorage.setItem(key, val);
 return Promise.resolve();
 }
